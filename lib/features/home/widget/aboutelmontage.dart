@@ -31,6 +31,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
           end: Alignment.bottomRight,
           colors: [
             Colors.white,
+            // ignore: deprecated_member_use
             Colors.white.withOpacity(0.95),
             const Color(0xFFF8F9FA),
           ],
@@ -38,11 +39,13 @@ class _AboutElMontageState extends State<AboutElMontage> {
         borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Appcolors.accentColor.withOpacity(0.2),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.1),
             blurRadius: 5,
             offset: const Offset(0, 2),
@@ -69,12 +72,15 @@ class _AboutElMontageState extends State<AboutElMontage> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
+                          // ignore: deprecated_member_use
                           Appcolors.accentColor.withOpacity(0.1),
+                          // ignore: deprecated_member_use
                           Appcolors.accentColor.withOpacity(0.05),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20.r),
                       border: Border.all(
+                        // ignore: deprecated_member_use
                         color: Appcolors.accentColor.withOpacity(0.3),
                         width: 1,
                       ),
@@ -95,18 +101,19 @@ class _AboutElMontageState extends State<AboutElMontage> {
                       "عن مؤسسة فرسان التعافي",
                       style: TextStyle(
                         color: Appcolors.bluecolor,
-                        fontSize: 15.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(width: 8.w),
                     Container(
-                      height: 30.h,
-                      width: 4.w,
+                      height: 20.w,
+                      width: 5.w,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
                             Appcolors.accentColor,
+                            // ignore: deprecated_member_use
                             Appcolors.accentColor.withOpacity(0.5),
                           ],
                         ),
@@ -127,6 +134,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.2),
                       blurRadius: 10,
                       offset: const Offset(0, 5),
@@ -175,6 +183,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 14.sp,
+                // ignore: deprecated_member_use
                 color: Appcolors.bluecolor.withOpacity(0.9),
                 height: 1.6,
               ),
@@ -206,6 +215,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
+                        // ignore: deprecated_member_use
                         Appcolors.accentColor.withOpacity(0.2),
                         Colors.transparent,
                       ],
@@ -270,12 +280,15 @@ class _AboutElMontageState extends State<AboutElMontage> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
+            // ignore: deprecated_member_use
             Appcolors.accentColor.withOpacity(0.1),
+            // ignore: deprecated_member_use
             Appcolors.accentColor.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(15.r),
         border: Border.all(
+          // ignore: deprecated_member_use
           color: Appcolors.accentColor.withOpacity(0.2),
           width: 1,
         ),

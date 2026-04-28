@@ -41,7 +41,7 @@ class _ResortPageState extends State<ResortPage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double horizontalPadding = screenWidth > 500 ? 40.w : 20.w;
+    double horizontalPadding = screenWidth > 500 ? 30.w : 20.w;
     
     return Scaffold(
       backgroundColor: Appcolors.greycolor,

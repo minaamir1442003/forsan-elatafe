@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:forsan_eltafe/core/shared_preferences_helper.dart';
 import 'package:forsan_eltafe/features/navigation_bar/navigation_bar.dart';
 
@@ -60,7 +61,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     }
   }
+@override
+void initState() {
+  super.initState();
 
+  // تثبيت الاتجاه Portrait فقط
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+}
+
+@override
+void dispose() {
+  // رجّع كل الاتجاهات لما تخرج من الصفحة
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
+
+  super.dispose();
+}
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -84,9 +107,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 40,
-                        width: 40,
+                        
                         decoration: BoxDecoration(
+                          // ignore: deprecated_member_use
                           color: Colors.white.withOpacity(0.5),
                           shape: BoxShape.circle,
                         ),
@@ -104,9 +127,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             vertical: 8,
                           ),
                           decoration: BoxDecoration(
+                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(0.3),
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(
+                              // ignore: deprecated_member_use
                               color: const Color(0xFF0F4C81).withOpacity(0.2),
                               width: 1,
                             ),
@@ -171,6 +196,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               boxShadow: _currentIndex == index
                                   ? [
                                       BoxShadow(
+                                        // ignore: deprecated_member_use
                                         color: const Color(0xFF0F4C81).withOpacity(0.3),
                                         blurRadius: 4,
                                         offset: const Offset(0, 2),
@@ -196,6 +222,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             elevation: 5,
+                            // ignore: deprecated_member_use
                             shadowColor: const Color(0xFF0F4C81).withOpacity(0.3),
                           ),
                           child: Row(
@@ -215,6 +242,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Container(
                                 padding: const EdgeInsets.all(2),
                                 decoration: BoxDecoration(
+                                  // ignore: deprecated_member_use
                                   color: Colors.white.withOpacity(0.2),
                                   shape: BoxShape.circle,
                                 ),
@@ -262,17 +290,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Colors.black.withOpacity(0.08),
                     blurRadius: 25,
                     offset: const Offset(0, 15),
                   ),
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: const Color(0xFF0F4C81).withOpacity(0.05),
                     blurRadius: 10,
                     offset: const Offset(0, 5),
                   ),
                 ],
                 border: Border.all(
+                  // ignore: deprecated_member_use
                   color: Colors.white.withOpacity(0.5),
                   width: 1.5,
                 ),
@@ -285,9 +316,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         borderRadius: BorderRadius.circular(22),
                         child: Image.asset(
                           image,
-                          height: 280,
                           width: double.infinity,
                           fit: BoxFit.cover,
+                          height: 250,
                         ),
                       ),
                       Positioned.fill(
@@ -299,6 +330,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               end: Alignment.bottomCenter,
                               colors: [
                                 Colors.transparent,
+                                // ignore: deprecated_member_use
                                 Colors.black.withOpacity(0.1),
                               ],
                             ),
@@ -307,7 +339,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 10),
                   Text(
                     title,
                     textAlign: TextAlign.center,
@@ -333,7 +365,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       fontSize: 15,
                       color: Colors.grey.shade600,
                       height: 1.6,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 20),

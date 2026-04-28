@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:intl/intl.dart';
@@ -115,12 +117,14 @@ class ProfileHeader extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [
                   Appcolors.primaryColor,
+                  // ignore: deprecated_member_use
                   Appcolors.primaryColor.withOpacity(0.95),
                 ],
               ),
               borderRadius: BorderRadius.circular(32),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Appcolors.primaryColor.withOpacity(0.3),
                   blurRadius: 20,
                   offset: const Offset(0, 10),

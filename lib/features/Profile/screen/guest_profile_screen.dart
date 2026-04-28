@@ -5,7 +5,6 @@ import 'package:forsan_eltafe/features/Profile/widget/guest_banner.dart';
 import 'package:forsan_eltafe/features/Profile/widget/guest_info_section.dart';
 import 'package:forsan_eltafe/features/Profile/widget/guest_login_prompt.dart';
 import 'package:forsan_eltafe/features/Profile/widget/guest_record_card.dart';
-import 'package:forsan_eltafe/features/navigation_bar/navigation_bar.dart';
 import '../data/guest_data.dart';
 
 
@@ -82,6 +81,7 @@ class GuestProfileScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
+                        // ignore: deprecated_member_use
                         color: Appcolors.accentColorNew.withOpacity(0.12),
                         borderRadius: BorderRadius.circular(40),
                       ),
@@ -98,6 +98,7 @@ class GuestProfileScreen extends StatelessWidget {
                 ),
               ),
               // السجلات
+              // ignore: unnecessary_to_list_in_spreads
               ...GuestData.records.map((record) => GuestRecordCard(record: record)).toList(),
               const SizedBox(height: 10),
               const GuestLoginPrompt(),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/home/widget/Conectus.dart';
 import 'package:forsan_eltafe/features/home/widget/aboutelmontage.dart';
@@ -18,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     // تحديد قيمة الـ padding بناءً على عرض الشاشة
-    double horizontalPadding = screenWidth > 500 ? 40.w : 20.w;
+    double horizontalPadding = screenWidth > 500 ? 30 : 20;
     return Scaffold(
       backgroundColor: Appcolors.greycolor,
       body: SafeArea(

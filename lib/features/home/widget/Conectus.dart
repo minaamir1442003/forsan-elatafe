@@ -74,7 +74,7 @@ class Conectus extends StatelessWidget {
                 }
               },
               child: Container(
-                height: 130.h,
+                height: 150,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
@@ -95,6 +95,7 @@ class Conectus extends StatelessWidget {
                         "assets/image/Map location of Abu Sir.png",
                         fit: BoxFit.cover,
                         width: double.infinity,
+                        // height: double.infinity,
                       ),
                     ),
                     Container(
@@ -272,7 +273,7 @@ class Conectus extends StatelessWidget {
             }
           : null,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(15.r),
