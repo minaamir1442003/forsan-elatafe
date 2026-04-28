@@ -156,7 +156,7 @@ class _ResortCardsState extends State<MedicalCards> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300.h, // زودت شوية الارتفاع عشان يناسب النصوص الإضافية
+      height: 350, // زودت شوية الارتفاع عشان يناسب النصوص الإضافية
       child: PageView.builder(
         controller: _pageController,
         itemCount: items.length,

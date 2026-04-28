@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 class DioHelper {
   static late Dio dio;
 
+  // ignore: strict_top_level_inference
   static init() {
     dio = Dio(
       BaseOptions(
