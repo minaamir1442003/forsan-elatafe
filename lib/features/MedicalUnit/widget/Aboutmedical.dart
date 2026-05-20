@@ -1,391 +1,180 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Aboutmedical extends StatelessWidget {
   const Aboutmedical({super.key});
 
   @override
-Widget build(BuildContext context) {
-  return Container(
-    width: double.infinity,
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Colors.white,
-          Colors.white.withOpacity(0.95),
-          const Color(0xFFF8F9FA),
-        ],
-      ),
-      borderRadius: BorderRadius.circular(25.r),
-      boxShadow: [
-        BoxShadow(
-          color: Appcolors.accentColor.withOpacity(0.2),
-          blurRadius: 15,
-          offset: const Offset(0, 5),
-        ),
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.1),
-          blurRadius: 5,
-          offset: const Offset(0, 2),
-        ),
-      ],
-    ),
-    padding: EdgeInsets.all(20.w),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  "عن صرحنا الطبي",
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Appcolors.bluecolor,
-                  ),
-                ),
-                SizedBox(height: 4.h),
-                Text(
-                  "بيئة آمنة للتعافي المستدام",
-                  style: TextStyle(
-                    color: Appcolors.accentColor,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(width: 12.w),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Appcolors.accentColor.withOpacity(0.2),
-                    Colors.transparent,
-                  ],
-                ),
-                shape: BoxShape.circle,
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(12.w),
-                child: Icon(
-                  Icons.security_rounded,
-                  size: 28.sp,
-                  color: Appcolors.accentColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20.h),
-        Text(
-          "تعتبر وحدة فرسان التعافي صرحاً طبياً متخصصاً يهدف إلى تقديم أرقى مستويات الرعاية النفسية وعلاج الإدمان. نلتزم بتوفير بيئة آمنة ومهنية تساعد المرضى على رحلة التعافي واستعادة توازنهم النفسي والاجتماعي.",
-          style: TextStyle(
-            fontSize: 14.sp,
-            height: 1.6,
-            color: Appcolors.bluecolor.withOpacity(0.9),
-            letterSpacing: 0.3,
-          ),
-          textAlign: TextAlign.right,
-        ),
-        SizedBox(height: 20.h),
-        
-        /// 🔹 إضافة الخريطة
-        _buildMapSection(),
-        
-        SizedBox(height: 20.h),
-        
-        /// 🔹 إضافة رقم التواصل
-        _buildContactInfo(),
-      ],
-    ),
-  );
-}
-
-  /// قسم الخريطة
-  Widget _buildMapSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              "موقع الوحدة الطبية",
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: Appcolors.bluecolor,
-              ),
-            ),
-            SizedBox(width: 8.w),
-            Icon(
-              Icons.location_on_outlined,
-              size: 18.sp,
-              color: Appcolors.accentColor,
-            ),
-          ],
-        ),
-        SizedBox(height: 8.h),
-        GestureDetector(
-          onTap: _openMap,
-          child: Container(
-            height: 160.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.r),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
-                  blurRadius: 10,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // صورة الخريطة (يمكنك استبدالها بصورة حقيقية للخريطة)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20.r),
-                  child: Image.asset(
-                    "assets/image/Map location of Abu Sir.png", // ضع صورة الخريطة هنا
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    errorBuilder: (context, error, stackTrace) {
-                      // في حالة عدم وجود الصورة، نعرض خلفية رمادية مع نص
-                      return Container(
-                        color: Colors.grey[200],
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.map_outlined,
-                                size: 40.sp,
-                                color: Colors.grey[400],
-                              ),
-                              SizedBox(height: 8.h),
-                              Text(
-                                "اضغط لعرض الموقع على الخريطة",
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                // علامة الموقع
-                Container(
-                  padding: EdgeInsets.all(12.w),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.95),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.location_on,
-                    size: 28.sp,
-                    color: Appcolors.accentColor,
-                  ),
-                ),
-                // تدرج خفيف لتحسين ظهور العلامة
-                Positioned.fill(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.r),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.black.withOpacity(0.1),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: 4.h),
-        
-      ],
-    );
-  }
-
-  Widget _buildContactInfo() {
+  Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15.w),
+      width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Appcolors.accentColor.withOpacity(0.1),
-            Appcolors.accentColor.withOpacity(0.05),
+            Colors.white,
+            Colors.white.withOpacity(0.95),
+            const Color(0xFFF8F9FA),
           ],
         ),
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-          color: Appcolors.accentColor.withOpacity(0.3),
-          width: 1,
-        ),
+        borderRadius: BorderRadius.circular(25.r),
+        boxShadow: [
+          BoxShadow(
+            color: Appcolors.accentColor.withOpacity(0.2),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          ),
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
+      padding: EdgeInsets.all(20.w),
       child: Column(
         children: [
-          Text(
-            "تواصل مع الوحدة الطبية",
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-              color: Appcolors.bluecolor,
-            ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            "01105445838",
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: Appcolors.bluecolor,
-            ),
-          ),
-          SizedBox(height: 12.h),
+          /// العنوان
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildContactButton(
-                icon: Icons.phone_in_talk_outlined,
-                label: "اتصال",
-                number: "01105445838",
-                isPhone: true,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "عن صرحنا الطبي",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Appcolors.bluecolor,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    "بيئة آمنة للتعافي المستدام",
+                    style: TextStyle(
+                      color: Appcolors.accentColor,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
-              _buildContactButton(
-                icon: Icons.message_outlined,
-                label: "واتساب",
-                number: "01105445838",
-                isPhone: false,
+
+              SizedBox(width: 12),
+
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Appcolors.accentColor.withOpacity(0.2),
+                      Colors.transparent,
+                    ],
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Icon(
+                    Icons.security_rounded,
+                    size: 28.sp,
+                    color: Appcolors.accentColor,
+                  ),
+                ),
               ),
             ],
           ),
+
+          SizedBox(height: 20),
+
+          /// الوصف
+          Text(
+            "تعتبر وحدة فرسان التعافي صرحاً طبياً متخصصاً يهدف إلى تقديم أرقى مستويات الرعاية النفسية وعلاج الإدمان، مع الالتزام بتوفير بيئة آمنة ومهنية تساعد المرضى في رحلة التعافي واستعادة التوازن النفسي والاجتماعي.",
+            style: TextStyle(
+              fontSize: 14.sp,
+              height: 1.6,
+              color: Appcolors.bluecolor.withOpacity(0.9),
+            ),
+            textAlign: TextAlign.right,
+          ),
+
+          SizedBox(height: 20),
+
+          /// بروتوكول التعاون
+          _buildProtocolCard(),
         ],
       ),
     );
   }
 
-  Widget _buildContactButton({
-    required IconData icon,
-    required String label,
-    required String number,
-    required bool isPhone,
-  }) {
-    return GestureDetector(
-      onTap: () {
-        if (isPhone) {
-          _callNumber(number);
-        } else {
-          _openWhatsApp(number);
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Appcolors.bluecolor,
-              Appcolors.bluecolor.withOpacity(0.9),
-            ],
+  Widget _buildProtocolCard() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(18.w),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Appcolors.bluecolor, Appcolors.bluecolor.withOpacity(.9)],
+        ),
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: Appcolors.bluecolor.withOpacity(.25),
+            blurRadius: 12,
+            offset: const Offset(0, 5),
           ),
-          borderRadius: BorderRadius.circular(30.r),
-          boxShadow: [
-            BoxShadow(
-              color: Appcolors.accentColor.withOpacity(0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
+        ],
+      ),
+      child: Row(
+        textDirection: TextDirection.rtl,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.all(10.r),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(.15),
+              shape: BoxShape.circle,
             ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
+            child: Icon(
+              Icons.workspace_premium_rounded,
               color: Colors.white,
-              size: 20.sp,
+              size: 30.sp,
             ),
-            SizedBox(width: 8.w),
-            Text(
-              label,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          ),
+
+          SizedBox(width: 12.w),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "إنجاز وتعاون استثنائي",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                SizedBox(height: 8.h),
+
+                Text(
+                  "نفخر بكونه أول بروتوكول تعاون في مصر بين مؤسسة فرسان التعافي والمركز الطبي لسكك حديد مصر، بهدف تقديم خدمات علاجية ونفسية متكاملة وفق أعلى معايير الرعاية.",
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(.95),
+                    height: 1.6,
+                    fontSize: 13.sp,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-
-  /// فتح الخريطة في Google Maps
-  void _openMap() async {
-    final Uri url = Uri.parse(
-      "https://maps.app.goo.gl/26ZPdXBa6eiPmLi3A?g_st=ipc",
-    );
-    
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    )) {
-      debugPrint("Could not open map");
-      // يمكن إضافة SnackBar للمستخدم
-    }
-  }
-
-void _callNumber(String number) async {
-    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
-    debugPrint("Call result: $res");
-  }
-
-void _openWhatsApp(String number) async {
-  String internationalNumber = "2$number"; // مصر = 20
-
-  final Uri whatsappUri = Uri.parse(
-    "https://wa.me/$internationalNumber",
-  );
-
-  if (await canLaunchUrl(whatsappUri)) {
-    await launchUrl(
-      whatsappUri,
-      mode: LaunchMode.externalApplication,
-    );
-  } else {
-    debugPrint("Could not open WhatsApp");
-  }
-}
 }
