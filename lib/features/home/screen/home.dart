@@ -3,6 +3,7 @@ import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/home/widget/Conectus.dart';
 import 'package:forsan_eltafe/features/home/widget/aboutelmontage.dart';
 import 'package:forsan_eltafe/features/home/widget/image_and_service.dart';
+import 'package:forsan_eltafe/features/home/widget/therapeutic_programs.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,6 +49,8 @@ class _HomePageState extends State<HomePage> {
                 // ),
                 AboutElMontage(),
                 SizedBox(height: 15),
+                TherapeuticPrograms(),
+                SizedBox(height: 15,),
                 Conectus(),
                 SizedBox(height: 100),
               ],
