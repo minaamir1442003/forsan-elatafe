@@ -45,15 +45,11 @@ class VisionSection extends StatelessWidget {
                     ],
                   ),
                 ),
-                child: Icon(
-                  Icons.favorite_rounded,
-                  size: 50.sp,
-                  color: Appcolors.accentColor,
-                ),
+                child: Image.asset("assets/image/appIcon.png",width: 130,height: 130,)
               ),
               Positioned(
-                bottom: -5,
-                right: -5,
+                bottom: 7,
+                right: 10,
                 child: Container(
                   padding: EdgeInsets.all(6.r),
                   decoration: BoxDecoration(

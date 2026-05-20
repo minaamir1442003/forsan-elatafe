@@ -4,6 +4,8 @@ import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/MedicalUnit/widget/Aboutmedical.dart';
 import 'package:forsan_eltafe/features/MedicalUnit/widget/Medical_cards.dart';
 import 'package:forsan_eltafe/features/MedicalUnit/widget/VideoWidget.dart';
+import 'package:forsan_eltafe/features/MedicalUnit/widget/buildHeaderSection.dart';
+import 'package:forsan_eltafe/features/MedicalUnit/widget/conect_us.dart';
 import 'package:forsan_eltafe/features/MedicalUnit/widget/daily_schedule.dart';
 import 'package:forsan_eltafe/features/MedicalUnit/widget/vision_section.dart';
 
@@ -12,7 +14,8 @@ class MedicalUnitPage extends StatefulWidget {
   State<MedicalUnitPage> createState() => _MedicalUnitPageState();
 }
 
-class _MedicalUnitPageState extends State<MedicalUnitPage> with SingleTickerProviderStateMixin {
+class _MedicalUnitPageState extends State<MedicalUnitPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
@@ -40,7 +43,7 @@ class _MedicalUnitPageState extends State<MedicalUnitPage> with SingleTickerProv
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double horizontalPadding = screenWidth > 500 ? 30 : 20;
-    
+
     return Scaffold(
       backgroundColor: Appcolors.greycolor,
       body: SafeArea(
@@ -55,11 +58,14 @@ class _MedicalUnitPageState extends State<MedicalUnitPage> with SingleTickerProv
                   SizedBox(height: 10),
                   VideoWidget(),
                   SizedBox(height: 20),
-                  _buildHeaderSection(),
+                  buildHeaderSection(),
+
                   SizedBox(height: 20),
                   MedicalCards(),
                   SizedBox(height: 20),
                   Aboutmedical(),
+                  SizedBox(height: 20),
+                  ConnectUs(),
                   SizedBox(height: 20),
                   TaskTimelineWidget(),
                   SizedBox(height: 20),
@@ -70,65 +76,6 @@ class _MedicalUnitPageState extends State<MedicalUnitPage> with SingleTickerProv
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeaderSection() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.white,
-            Colors.white.withOpacity(0.95),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(25.r),
-        boxShadow: [
-          BoxShadow(
-            color: Appcolors.accentColor.withOpacity(0.2),
-            blurRadius: 15,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Text(
-            "وحده فرسان التعافي",
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              color: Appcolors.bluecolor,
-            ),
-          ),
-          SizedBox(height: 5.h),
-          Text(
-            "للطب النفسي و علاج الادمان",
-            style: TextStyle(
-              fontSize: 22.sp,
-              fontWeight: FontWeight.bold,
-              color: Appcolors.accentColor,
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Container(
-            width: 80.w,
-            height: 3.h,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Appcolors.accentColor,
-                  Appcolors.accentColor.withOpacity(0.3),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-          ),
-        ],
       ),
     );
   }

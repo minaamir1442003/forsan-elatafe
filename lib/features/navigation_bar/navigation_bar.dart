@@ -70,7 +70,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   children: [
                     _buildNavItem(Icons.person, "حسابي", 3),
                     _buildNavItem(Icons.villa, "المنتجع", 2),
-                    _buildNavItem(Icons.local_hospital, "الوحدة الطبية", 1),
+                    _buildNavItem(Icons.local_hospital, "الوحدة", 1),
                     _buildNavItem(Icons.home, "الرئيسية", 0),
                   ],
                 ),
