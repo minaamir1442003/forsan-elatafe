@@ -29,7 +29,7 @@ class image_and_service extends StatelessWidget {
           ),
         ],
         image: DecorationImage(
-          image: AssetImage("assets/image/Overlay+Shadow2.png"),
+          image: AssetImage("assets/image/image mix in home.jpg"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Colors.black.withOpacity(0.3),
@@ -64,7 +64,7 @@ class image_and_service extends StatelessWidget {
                 ],
               ),
               child: Text(
-                "تعافي بأسلوب فاخر",
+                "طريقك الي السلام و التعافي",
                 style: TextStyle(
                   color: Appcolors.bluecolor,
                   fontSize: 14.sp,
@@ -104,7 +104,7 @@ class image_and_service extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.r),
               ),
               child: Text(
-                "بيئة هادئة وآمنة للشفاء بإطلالات طبيعية خلابة\nوخدمات فندقية متكاملة",
+                "بيئة هادئة وآمنة للشفاء بإطلالات طبيعية خلابة\nوخدمات فندقية متكاملة و اشراف طبي كامل",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 13.sp,

@@ -12,16 +12,26 @@ class AboutElMontage extends StatefulWidget {
 class _AboutElMontageState extends State<AboutElMontage> {
   bool _expanded = false;
 
+  int _selectedTab = 0;
+
+  final List<String> titles = ["الرسالة", "الرؤية"];
+
+  final List<String> content = [
+    "مرحبًا بكم في مؤسسة فرسان التعافي، ملاذكم للعلاج النفسي، علاج الإدمان، وإعادة التأهيل السلوكي. "
+        "احصلوا على السلام والشفاء مع فريقنا المتخصص.\n\n"
+        "نحن نهدف إلى تقديم خدمات طبية ونفسية وسلوكية شاملة وآمنة بأعلى معايير الجودة.",
+
+    "أن تصبح المؤسسة صرحاً رائداً في تقديم العلاج النفسي والتأهيل السلوكي المتكامل من خلال خدمات طبية ونفسية ذات جودة عالمية، "
+        "بما يساهم في تحسين وتغيير حياة النزلاء داخل مصر والوطن العربي والشرق الأوسط.",
+  ];
+
   @override
   Widget build(BuildContext context) {
-    String description =
-        "مرحبًا بكم في مؤسسة فرسان التعافي، ملاذكم المتخصص في العلاج النفسي وعلاج الإدمان وإعادة التأهيل السلوكي. "
-        "نقدم خدمات طبية ونفسية شاملة وآمنة بأعلى معايير الجودة، مع فريق من الأطباء والأخصائيين بخبرة تتجاوز 20 عامًا. "
-        "نحرص على توفير بيئة علاجية آمنة تحترم الخصوصية، ونسعى إلى إحداث تغيير حقيقي في حياة النزلاء من خلال برامج علاجية عالمية متكاملة.";
+    String currentText = content[_selectedTab];
 
-    String shortText = description.length > 100
-        ? "${description.substring(0, 100)}..."
-        : description;
+    String shortText = currentText.length > 120
+        ? "${currentText.substring(0, 120)}..."
+        : currentText;
 
     return Container(
       width: double.infinity,
@@ -31,7 +41,6 @@ class _AboutElMontageState extends State<AboutElMontage> {
           end: Alignment.bottomRight,
           colors: [
             Colors.white,
-            // ignore: deprecated_member_use
             Colors.white.withOpacity(0.95),
             const Color(0xFFF8F9FA),
           ],
@@ -39,13 +48,11 @@ class _AboutElMontageState extends State<AboutElMontage> {
         borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
             color: Appcolors.accentColor.withOpacity(0.2),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
           BoxShadow(
-            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.1),
             blurRadius: 5,
             offset: const Offset(0, 2),
@@ -57,7 +64,8 @@ class _AboutElMontageState extends State<AboutElMontage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            /// 🔹 Header
+
+            /// 🔹 HEADER
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -68,21 +76,20 @@ class _AboutElMontageState extends State<AboutElMontage> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 6.h,
+                    ),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          // ignore: deprecated_member_use
                           Appcolors.accentColor.withOpacity(0.1),
-                          // ignore: deprecated_member_use
                           Appcolors.accentColor.withOpacity(0.05),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20.r),
                       border: Border.all(
-                        // ignore: deprecated_member_use
                         color: Appcolors.accentColor.withOpacity(0.3),
-                        width: 1,
                       ),
                     ),
                     child: Text(
@@ -95,54 +102,30 @@ class _AboutElMontageState extends State<AboutElMontage> {
                     ),
                   ),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "عن مؤسسة فرسان التعافي",
-                      style: TextStyle(
-                        color: Appcolors.bluecolor,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(width: 8.w),
-                    Container(
-                      height: 20.w,
-                      width: 5.w,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Appcolors.accentColor,
-                            // ignore: deprecated_member_use
-                            Appcolors.accentColor.withOpacity(0.5),
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                    ),
-                  ],
+
+                Text(
+                  "عن المؤسسة",
+                  style: TextStyle(
+                    color: Appcolors.bluecolor,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
 
             SizedBox(height: 15.h),
 
-            /// 🔹 Image with shadow
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20.r),
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      // ignore: deprecated_member_use
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
+            /// 🔹 IMAGE
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.r),
+                border: Border.all(color: Appcolors.accentColor),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25.r),
                 child: Image.asset(
-                  "assets/image/abut monatge.png",
+                  "assets/image/529488832_122168786084431327_1269645577539243124_n (1).png",
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 180.h,
@@ -152,38 +135,93 @@ class _AboutElMontageState extends State<AboutElMontage> {
 
             SizedBox(height: 15.h),
 
-            /// 🔹 Title with accent border
+            /// 🔥 PREMIUM SWITCH (FIXED)
             Container(
-              padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+              padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                border: Border(
-                  right: BorderSide(
-                    color: Appcolors.accentColor,
-                    width: 3.w,
-                  ),
+                borderRadius: BorderRadius.circular(16.r),
+                color: Colors.grey.shade100,
+                border: Border.all(
+                  color: Appcolors.accentColor.withOpacity(0.2),
                 ),
               ),
-              child: Text(
-                "مؤسسة متخصصة في الطب النفسي وعلاج الإدمان",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  color: Appcolors.bluecolor,
-                  fontWeight: FontWeight.bold,
-                  height: 1.3,
-                ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Stack(
+                    children: [
+
+                      /// Indicator
+                      AnimatedAlign(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                        alignment: _selectedTab == 0
+                            ? Alignment.centerLeft
+                            : Alignment.centerRight,
+                        child: Container(
+                          width: constraints.maxWidth / 2,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14.r),
+                            gradient: LinearGradient(
+                              colors: [
+                                Appcolors.accentColor,
+                                Appcolors.accentColor.withOpacity(0.7),
+                              ],
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Appcolors.accentColor.withOpacity(0.25),
+                                blurRadius: 8,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      /// Tabs
+                      Row(
+                        children: List.generate(2, (index) {
+                          return Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedTab = index;
+                                  _expanded = false;
+                                });
+                              },
+                              child: Container(
+                                height: 40.h,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  titles[index],
+                                  style: TextStyle(
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: _selectedTab == index
+                                        ? Colors.white
+                                        : Appcolors.bluecolor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
 
-            SizedBox(height: 12.h),
+            SizedBox(height: 15.h),
 
-            /// 🔹 Description
+            /// 🔹 TEXT CONTENT
             Text(
-              _expanded ? description : shortText,
+              _expanded ? currentText : shortText,
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 14.sp,
-                // ignore: deprecated_member_use
                 color: Appcolors.bluecolor.withOpacity(0.9),
                 height: 1.6,
               ),
@@ -191,65 +229,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
 
             SizedBox(height: 20.h),
 
-            /// 🔹 Divider with star
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 2,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.transparent,
-                          Appcolors.greycolor,
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(6.w),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        // ignore: deprecated_member_use
-                        Appcolors.accentColor.withOpacity(0.2),
-                        Colors.transparent,
-                      ],
-                    ),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.stars_outlined,
-                    color: Appcolors.accentColor,
-                    size: 20.sp,
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    height: 2,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft,
-                        colors: [
-                          Colors.transparent,
-                          Appcolors.greycolor,
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 15.h),
-
-            /// 🔹 Features Row with enhanced design
+            /// 🔹 FEATURES
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -277,20 +257,14 @@ class _AboutElMontageState extends State<AboutElMontage> {
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
           colors: [
-            // ignore: deprecated_member_use
             Appcolors.accentColor.withOpacity(0.1),
-            // ignore: deprecated_member_use
             Appcolors.accentColor.withOpacity(0.05),
           ],
         ),
         borderRadius: BorderRadius.circular(15.r),
         border: Border.all(
-          // ignore: deprecated_member_use
           color: Appcolors.accentColor.withOpacity(0.2),
-          width: 1,
         ),
       ),
       child: Row(
@@ -304,11 +278,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
             ),
           ),
           SizedBox(width: 6.w),
-          Icon(
-            icon,
-            size: 16.sp,
-            color: Appcolors.accentColor,
-          ),
+          Icon(icon, size: 16.sp, color: Appcolors.accentColor),
         ],
       ),
     );

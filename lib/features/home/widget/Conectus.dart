@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,314 +16,238 @@ class Conectus extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             Appcolors.bluecolor,
-            Appcolors.bluecolor.withOpacity(0.95),
+            Appcolors.bluecolor.withOpacity(.95),
             const Color(0xFF1A3A55),
           ],
         ),
         borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
-            color: Appcolors.accentColor.withOpacity(0.3),
+            color: Appcolors.accentColor.withOpacity(.3),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
         ],
       ),
+
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        padding: EdgeInsets.all(18.w),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            // العنوان
+            /// TITLE
             Center(
               child: Text(
-                    "تواصل معنا",
-                    style: TextStyle(
-                      fontSize: 22.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-            ),
-            SizedBox(height: 20),
-
-            // العنوان
-            _buildInfoRow(
-              icon: Icons.location_on_sharp,
-              title: "العنوان",
-              value: "أبو صير، الجيزة، مصر",
-              showMap: true,
-            ),
-
-            SizedBox(height: 15),
-
-            // الخريطة
-            GestureDetector(
-              onTap: () async {
-                final Uri url = Uri.parse(
-                  "https://maps.app.goo.gl/DCCNSGndsEV7i5o47",
-                );
-                if (!await launchUrl(
-                  url,
-                  mode: LaunchMode.externalApplication,
-                )) {
-                  debugPrint("Could not open map");
-                }
-              },
-              child: Container(
-                height: 150,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                "تواصل معنا",
+                style: TextStyle(
+                  fontSize: 22.sp,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20.r),
-                      child: Image.asset(
-                        "assets/image/Map location of Abu Sir.png",
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        // height: double.infinity,
+              ),
+            ),
+
+            SizedBox(height: 25.h),
+
+            /// WHATSAPP CARD
+            Container(
+              padding: EdgeInsets.all(16.w),
+
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(.1),
+
+                borderRadius: BorderRadius.circular(18.r),
+
+                border: Border.all(color: Colors.green.withOpacity(.3)),
+              ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(10),
+
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          shape: BoxShape.circle,
+
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.green.withOpacity(.4),
+
+                              blurRadius: 10,
+                            ),
+                          ],
+                        ),
+
+                        child: Icon(Icons.chat, color: Colors.white),
                       ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Appcolors.accentColor,
-                            blurRadius: 10,
-                            spreadRadius: 2,
+
+                      Spacer(),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+
+                        children: [
+                          Text(
+                            "تواصل عبر واتساب",
+
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+
+                              fontSize: 15.sp,
+                            ),
+                          ),
+
+                          SizedBox(height: 4),
+
+                          Text(
+                            "اضغط على أي رقم لبدء المحادثة",
+
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 11.sp,
+                            ),
                           ),
                         ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Icon(
-                          Icons.location_on,
-                          size: 30.sp,
-                          color: Appcolors.accentColor,
-                        ),
+                    ],
+                  ),
+
+                  SizedBox(height: 18),
+
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+
+                    alignment: WrapAlignment.end,
+
+                    children: [
+                      _phoneChip("01145150842", "201145150842"),
+
+                      _phoneChip("01155665660", "201155665660"),
+
+                      _phoneChip("01105445838", "201105445838"),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 18),
+
+            /// WEBSITE CARD
+            GestureDetector(
+              onTap: () =>
+                  _launchWebsite("https://recovery-knights.vercel.app/"),
+
+              child: Container(
+                padding: EdgeInsets.all(16),
+
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(.1),
+
+                  borderRadius: BorderRadius.circular(18.r),
+
+                  border: Border.all(
+                    color: Appcolors.accentColor.withOpacity(.3),
+                  ),
+                ),
+
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+
+                      decoration: BoxDecoration(
+                        color: Appcolors.accentColor,
+
+                        shape: BoxShape.circle,
                       ),
+
+                      child: Icon(
+                        Icons.public,
+                        color: Appcolors.bluecolor,
+                        size: 18.sp,
+                      ),
+                    ),
+
+                    Spacer(),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+
+                      children: [
+                        Text(
+                          "الموقع الإلكتروني",
+
+                          style: TextStyle(
+                            color: Colors.white,
+
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.sp,
+                          ),
+                        ),
+
+                        SizedBox(height: 4),
+
+                        Text(
+                          "اضغط لزيارة الموقع",
+
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
-
-            SizedBox(height: 20),
-
-            // رقم الهاتف
-            _buildContactRow(
-              icon: Icons.phone_in_talk_outlined,
-              title: "اتصال بنا",
-              value: "01145150842",
-              onTap: () => _callNumber("01145150842"),
-              isPhone: true,
-            ),
-
-            SizedBox(height: 15),
-
-            // الموقع الإلكتروني
-            _buildContactRow(
-              icon: Icons.public,
-              title: "الموقع الإلكتروني",
-              value: "www.resort-name.com",
-              onTap: () => _launchWebsite("https://recovery-knights.vercel.app/"),
-              isPhone: false,
-            ),
-
-            SizedBox(height: 20),
-
-            // الفاصل
-            Divider(
-              thickness: 1.5,
-              color: Colors.white.withOpacity(0.3),
-              height: 1,
-            ),
-
-            SizedBox(height: 20),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildSocialIcon(
-                  icon: Icons.facebook,
-                  url: "https://www.facebook.com/recoveryknightsunits/",
-                  color: Colors.blue.shade700,
-                ),
-                SizedBox(width: 15.w),
-                _buildSocialIcon(
-                  icon: FontAwesomeIcons.instagram,
-                  url: "https://www.instagram.com/recoveryknightsunit/",
-                  color: Colors.purple.shade300,
-                ),
-                SizedBox(width: 15.w),
-                _buildSocialIcon(
-                  icon: FontAwesomeIcons.tiktok,
-                  url: "https://www.tiktok.com/@recoveryknightsunit",
-                  color: Colors.black,
-                ),
-                SizedBox(width: 15.w),
-                _buildSocialIcon(
-                  icon: FontAwesomeIcons.youtube,
-                  url: "https://www.youtube.com/@recoveryknightsunit",
-                  color: Colors.red.shade700,
-                ),
-                SizedBox(width: 15.w),
-                _buildSocialIcon(
-                  icon: FontAwesomeIcons.snapchat,
-                  url: "https://www.snapchat.com/add/recoveryknight",
-                  color: Colors.yellow.shade700,
-                ),
-              ],
-            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildInfoRow({
-    required IconData icon,
-    required String title,
-    required String value,
-    bool showMap = false,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+  Widget _phoneChip(String phone, String internationalPhone) {
+    return InkWell(
+      onTap: () => _openWhatsApp(internationalPhone),
+
+      borderRadius: BorderRadius.circular(30),
+
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+
+        decoration: BoxDecoration(
+          color: Colors.green.withOpacity(.15),
+
+          borderRadius: BorderRadius.circular(30),
+
+          border: Border.all(color: Colors.green),
+        ),
+
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+
           children: [
+            Icon(Icons.chat, color: Colors.green, size: 18.sp),
+
+            SizedBox(width: 8),
+
             Text(
-              title,
+              phone,
               style: TextStyle(
-                fontSize: 12.sp,
-                color: Colors.white.withOpacity(0.8),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 16.sp,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: 15.sp,
               ),
-            ),
-          ],
-        ),
-        SizedBox(width: 12.w),
-        Container(
-          padding: EdgeInsets.all(10.w),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Appcolors.greycolor.withOpacity(0.3),
-                Appcolors.greycolor.withOpacity(0.1),
-              ],
-            ),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Appcolors.accentColor.withOpacity(0.3),
-                blurRadius: 5,
-              ),
-            ],
-          ),
-          child: Icon(
-            icon,
-            size: 24.sp,
-            color: Appcolors.accentColor,
-          ),
-        ),
-      ],
-    );
-  }
-
-  // Widget لعرض معلومات التواصل (هاتف أو موقع)
-  Widget _buildContactRow({
-    required IconData icon,
-    required String title,
-    required String value,
-    required VoidCallback onTap,
-    required bool isPhone,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      onLongPress: isPhone
-          ? () {
-              // نسخ الرقم عند الضغط المطول
-              // يمكن إضافة Snackbar للإشعار
-            }
-          : null,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(15.r),
-          border: Border.all(
-            color: Appcolors.accentColor.withOpacity(0.3),
-            width: 1,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.all(10.w),
-              decoration: BoxDecoration(
-                color: Appcolors.accentColor,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Appcolors.accentColor.withOpacity(0.5),
-                    blurRadius: 8,
-                    spreadRadius: 1,
-                  ),
-                ],
-              ),
-              child: Icon(
-                icon,
-                size: 22.sp,
-                color: Appcolors.bluecolor,
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: Colors.white.withOpacity(0.8),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 4.h),
-                Text(
-                  value,
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ],
             ),
           ],
         ),
@@ -333,71 +255,15 @@ class Conectus extends StatelessWidget {
     );
   }
 
-  // Widget لأيقونات السوشيال ميديا
-  Widget _buildSocialIcon({
-    required IconData icon,
-    required String url,
-    required Color color,
-  }) {
-    return InkWell(
-      onTap: () => launchSocial(url),
-      borderRadius: BorderRadius.circular(50.r),
-      child: Container(
-        padding: EdgeInsets.all(10.w),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.white.withOpacity(0.15),
-              Colors.white.withOpacity(0.05),
-            ],
-          ),
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: Appcolors.accentColor.withOpacity(0.5),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 5,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Icon(
-          icon,
-          color: Appcolors.accentColor,
-          size: 20.sp,
-        ),
-      ),
-    );
-  }
+  Future<void> _openWhatsApp(String phone) async {
+    final Uri uri = Uri.parse("https://wa.me/$phone");
 
-  void _callNumber(String number) async {
-    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
-    debugPrint("Call result: $res");
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   Future<void> _launchWebsite(String url) async {
     final Uri uri = Uri.parse(url);
-    if (!await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication,
-    )) {
-      debugPrint('Could not launch $url');
-    }
-  }
-}
 
-Future<void> launchSocial(String url) async {
-  final Uri uri = Uri.parse(url);
-
-  if (!await launchUrl(
-    uri,
-    mode: LaunchMode.externalApplication,
-  )) {
-    throw Exception('Could not launch $url');
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 }
