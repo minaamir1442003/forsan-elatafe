@@ -23,6 +23,21 @@ class RecordCard extends StatelessWidget {
       }
     }
 
+    // ✅ فلترة الحقول الفاضية فقط
+    final filteredData = Map.fromEntries(
+      data.entries.where((entry) {
+        final value = entry.value;
+        
+        // تجاهل الحقول الفاضية
+        if (value == null) return false;
+        if (value is List && value.isEmpty) return false;
+        if (value is String && value.trim().isEmpty) return false;
+        if (value is Map && value.isEmpty) return false;
+        
+        return true;
+      })
+    );
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       decoration: BoxDecoration(
@@ -103,12 +118,26 @@ class RecordCard extends StatelessWidget {
           children: [
             const Divider(height: 1, thickness: 1),
             const SizedBox(height: 20),
-            ...data.entries.map((entry) {
-              final key = entry.key;
-              final value = entry.value;
-              if (value == null || value.toString().isEmpty) return const SizedBox();
-              return _buildInfoRow(key, value);
-            }).toList(),
+            // ✅ استخدام data المفلترة بدل الأصلية
+            if (filteredData.isEmpty)
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Center(
+                  child: Text(
+                    'لا توجد بيانات إضافية',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Appcolors.textLight,
+                    ),
+                  ),
+                ),
+              )
+            else
+              ...filteredData.entries.map((entry) {
+                final key = entry.key;
+                final value = entry.value;
+                return _buildInfoRow(key, value);
+              }).toList(),
             if (record['images'] != null && record['images'].isNotEmpty) ...[
               const SizedBox(height: 20),
               Container(
@@ -262,6 +291,12 @@ class RecordCard extends StatelessWidget {
       'familySupport': '👨‍👩‍👧‍👦 الدعم الأسري',
       'environmentalStress': '🌍 الضغوط البيئية',
       'generalImpression': '💭 الانطباع العام',
+      'sessionType': '📋 نوع الجلسة',
+      'statusBehavior': '🎭 السلوك',
+      'eventsRisks': '⚠️ الأحداث/المخاطر',
+      'action': '⚡ الإجراء',
+      'goal': '🎯 الهدف',
+      'tracking': '📊 المتابعة',
     };
     return translations[key] ?? key;
   }
