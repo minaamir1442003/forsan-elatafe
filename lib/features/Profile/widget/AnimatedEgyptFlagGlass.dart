@@ -41,25 +41,20 @@ class _AnimatedEgyptFlag3DState extends State<Animatedegyptflagglass>
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: Appcolors.accentColor,
-                width: 3,
-              ),
+            
               boxShadow: [
                 BoxShadow(
-                  color: Appcolors.accentColor.withOpacity(0.5),
+                  color: Appcolors.accentColor.withOpacity(0.3),
                   blurRadius: 25,
                   spreadRadius: 5,
                 ),
               ],
             ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/image/logo egypt.webp',
-                height: widget.size,
-                width: widget.size,
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'assets/image/appIcon.png',
+              height: widget.size,
+              width: widget.size,
+              fit: BoxFit.cover,
             ),
           ),
         );

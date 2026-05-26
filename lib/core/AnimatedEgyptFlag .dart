@@ -60,8 +60,8 @@ class _AnimatedEgyptFlagState extends State<AnimatedEgyptFlag>
               child: ClipOval(
                 child: Image.asset(
                   'assets/image/logo egypt.webp',
-                  height: 70,
-                  width: 70,
+                  height: 55,
+                  width: 55,
                   fit: BoxFit.cover,
                 ),
               ),
