@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                 TherapeuticPrograms(),
                 SizedBox(height: 15),
                 Conectus(),
-                SizedBox(height: 60.h),
+                SizedBox(height: 75.h),
               ],
             ),
           ),
