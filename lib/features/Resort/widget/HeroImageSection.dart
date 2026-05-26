@@ -59,7 +59,7 @@ class HeroImageSection extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                   
-                    fontSize: 24.sp,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(

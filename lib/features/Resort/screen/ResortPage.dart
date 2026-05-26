@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
-import 'package:forsan_eltafe/features/Resort/widget/AboutResortCard%20.dart';
+import 'package:forsan_eltafe/features/Resort/widget/conectustomontage.dart';
+import 'package:forsan_eltafe/features/Resort/widget/infoelmontage.dart';
 import 'package:forsan_eltafe/features/Resort/widget/HeroImageSection.dart';
 import 'package:forsan_eltafe/features/Resort/widget/ResortCards.dart';
 import 'package:forsan_eltafe/features/Resort/widget/ResortHeaderSection.dart';
@@ -72,8 +73,10 @@ class _ResortPageState extends State<ResortPage>
                   SizedBox(height: 28),
                   ResortCards(),
                   SizedBox(height: 28),
-                  const AboutResortCard(),
+                  const Infoelmontage(),
                   SizedBox(height: 28),
+                  Conectustomontage(),
+                  SizedBox(height: 25,),
                   _buildSectionHeader(
                     title: "البرنامج اليومي العلاجي",
                     color: Appcolors.bluecolor,

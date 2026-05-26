@@ -16,23 +16,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Map<String, String>> _pages = [
     {
-      "image": "assets/image/welcome.jpeg",
+      "image": "assets/image/6cc79e41-e205-4f31-8704-859d54e1592d.jpg",
       "title": "أهلاً بك في\nفُرسان التعافي",
-      "desc": "مركز متخصص في الطب النفسي وعلاج الإدمان\nوإعادة التأهيل السلوكي في بيئة آمنة.",
+      "desc": "مؤسسة متخصص في الطب النفسي وعلاج الإدمان\nوإعادة التأهيل السلوكي في بيئة آمنة.",
     },
     {
-      "image": "assets/image/medical_team.jpeg",
+      "image": "assets/wehda/wehda14.jpeg",
       "title": "فريق طبي متخصص",
       "desc": "نخبة من أفضل الأطباء النفسيين والمعالجين\nلدعم رحلتك نحو التعافي باحترافية.",
     },
     {
-      "image": "assets/image/hotel_room.jpeg",
+      "image": "assets/montaga/montaga19.jpeg",
       "title": "إقامة فندقية فاخرة",
       "desc": "بيئة هادئة ومريحة تساعد على الاستقرار النفسي\nوتسريع عملية الشفاء.",
     },
     {
-      "image": "assets/image/location.jpeg",
-      "title": "موقع مميز في أبو صير",
+      "image": "assets/image/location to splach screen .png",
+      "title": "موقع مميز في أبو صير و ابو زعبل",
       "desc": "نقع في منطقة أبو صير - البدرشين، محافظة الجيزة\nنعمل على مدار 24 ساعة لخدمتك.",
     },
   ];

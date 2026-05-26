@@ -30,10 +30,6 @@ class _AboutElMontageState extends State<AboutElMontage> {
   Widget build(BuildContext context) {
     String currentText = content[_selectedTab];
 
-    String shortText = currentText.length > 120
-        ? "${currentText.substring(0, 120)}..."
-        : currentText;
-
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -65,51 +61,17 @@ class _AboutElMontageState extends State<AboutElMontage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-
             /// 🔹 HEADER
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _expanded = !_expanded;
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 6.h,
-                    ),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Appcolors.accentColor.withOpacity(0.1),
-                          Appcolors.accentColor.withOpacity(0.05),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(20.r),
-                      border: Border.all(
-                        color: Appcolors.accentColor.withOpacity(0.3),
-                      ),
-                    ),
-                    child: Text(
-                      _expanded ? "عرض أقل" : "عرض المزيد",
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Appcolors.accentColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
                 AnimatedEgyptFlag(),
 
                 Text(
                   "عن المؤسسة",
                   style: TextStyle(
                     color: Appcolors.bluecolor,
-                    fontSize: 14.sp,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -151,7 +113,6 @@ class _AboutElMontageState extends State<AboutElMontage> {
                 builder: (context, constraints) {
                   return Stack(
                     children: [
-
                       /// Indicator
                       AnimatedAlign(
                         duration: const Duration(milliseconds: 300),
@@ -220,7 +181,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
 
             /// 🔹 TEXT CONTENT
             Text(
-              _expanded ? currentText : shortText,
+              currentText,
               textAlign: TextAlign.right,
               style: TextStyle(
                 fontSize: 14.sp,
@@ -251,10 +212,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
     );
   }
 
-  Widget _buildFeatureItem({
-    required IconData icon,
-    required String text,
-  }) {
+  Widget _buildFeatureItem({required IconData icon, required String text}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -265,9 +223,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
           ],
         ),
         borderRadius: BorderRadius.circular(15.r),
-        border: Border.all(
-          color: Appcolors.accentColor.withOpacity(0.2),
-        ),
+        border: Border.all(color: Appcolors.accentColor.withOpacity(0.2)),
       ),
       child: Row(
         children: [
