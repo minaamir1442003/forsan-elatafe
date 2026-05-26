@@ -128,7 +128,7 @@ class Conectus extends StatelessWidget {
                     alignment: WrapAlignment.end,
 
                     children: [
-                      _phoneChip("01145150842", "201145150842"),
+                      _phoneChip("01105445839", "201105445839"),
 
                       _phoneChip("01155665660", "201155665660"),
 

@@ -18,6 +18,7 @@ class Conectus extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             Appcolors.bluecolor,
+            // ignore: deprecated_member_use
             Appcolors.bluecolor.withOpacity(0.95),
             const Color(0xFF1A3A55),
           ],
@@ -25,6 +26,7 @@ class Conectus extends StatelessWidget {
         borderRadius: BorderRadius.circular(25.r),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Appcolors.accentColor.withOpacity(0.3),
             blurRadius: 15,
             offset: const Offset(0, 5),
@@ -80,6 +82,7 @@ class Conectus extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.r),
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.2),
                       blurRadius: 8,
                       offset: const Offset(0, 3),
@@ -100,6 +103,7 @@ class Conectus extends StatelessWidget {
                     ),
                     Container(
                       decoration: BoxDecoration(
+                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.9),
                         shape: BoxShape.circle,
                         boxShadow: [
@@ -151,6 +155,7 @@ class Conectus extends StatelessWidget {
             // الفاصل
             Divider(
               thickness: 1.5,
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.3),
               height: 1,
             ),
@@ -213,6 +218,7 @@ class Conectus extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 12.sp,
+                // ignore: deprecated_member_use
                 color: Colors.white.withOpacity(0.8),
                 fontWeight: FontWeight.w500,
               ),
@@ -234,13 +240,16 @@ class Conectus extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
+                // ignore: deprecated_member_use
                 Appcolors.greycolor.withOpacity(0.3),
+                // ignore: deprecated_member_use
                 Appcolors.greycolor.withOpacity(0.1),
               ],
             ),
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
+                // ignore: deprecated_member_use
                 color: Appcolors.accentColor.withOpacity(0.3),
                 blurRadius: 5,
               ),
@@ -275,9 +284,11 @@ class Conectus extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         decoration: BoxDecoration(
+          // ignore: deprecated_member_use
           color: Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(15.r),
           border: Border.all(
+            // ignore: deprecated_member_use
             color: Appcolors.accentColor.withOpacity(0.3),
             width: 1,
           ),
@@ -292,6 +303,7 @@ class Conectus extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Appcolors.accentColor.withOpacity(0.5),
                     blurRadius: 8,
                     spreadRadius: 1,
@@ -311,6 +323,7 @@ class Conectus extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontSize: 12.sp,
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.8),
                     fontWeight: FontWeight.w500,
                   ),
@@ -349,6 +362,7 @@ class Conectus extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
+              // ignore: deprecated_member_use
               Colors.white.withOpacity(0.15),
               Colors.white.withOpacity(0.05),
             ],

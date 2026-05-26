@@ -35,17 +35,15 @@ class VisionSection extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
+                width: 190,
+                height: 150,
                 padding: EdgeInsets.all(18.r),
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.2),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
+                
                 ),
-                child: Image.asset("assets/image/appIcon.png",width: 130,height: 130,)
+                child: Image.asset("assets/image/wehdano back.png",fit: BoxFit.cover,width: 150,height: 150,)
               ),
               Positioned(
                 bottom: 7,

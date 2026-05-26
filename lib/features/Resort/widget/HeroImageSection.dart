@@ -9,7 +9,7 @@ class HeroImageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 220,
+      height: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.r),
         boxShadow: [
@@ -25,7 +25,7 @@ class HeroImageSection extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(30.r),
             child: Image.asset(
-              "assets/image/Luxury resort exterior.png",
+              "assets/montaga/montaga1.jpeg",
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.cover,
@@ -55,9 +55,10 @@ class HeroImageSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "واحة التعافي",
+                  "منتجع فرسان التعافي للطب النفسي و علاج الادمان و التاهيل السلوكي",
                   style: TextStyle(
                     color: Colors.white,
+                  
                     fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                     shadows: [
@@ -68,6 +69,7 @@ class HeroImageSection extends StatelessWidget {
                       ),
                     ],
                   ),
+                  textAlign:TextAlign.right ,
                 ),
                 SizedBox(height: 5.h),
                 Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -51,10 +52,10 @@ class AboutResortCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 8.w),
+              SizedBox(width: 8),
               Container(
-                height: 30.h,
-                width: 4.w,
+                height: 30,
+                width: 4,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -67,8 +68,8 @@ class AboutResortCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
-          
+          SizedBox(height: 12),
+
           // الوصف
           Text(
             "إقامة فاخرة تجمع بين الراحة والخصوصية، مصممة لدعم رحلتك نحو التعافي النفسي في بيئة هادئة ومريحة",
@@ -79,29 +80,38 @@ class AboutResortCard extends StatelessWidget {
             ),
             textAlign: TextAlign.right,
           ),
-          SizedBox(height: 20.h),
-          
+          SizedBox(height: 20),
+
           // المميزات
           Wrap(
-            spacing: 12.w,
-            runSpacing: 12.h,
+            spacing: 12,
+            runSpacing: 12,
             alignment: WrapAlignment.center,
             children: const [
-              FeatureItem(icon: Icons.watch_later_outlined, text: "خدمة ٢٤ ساعة"),
+              FeatureItem(
+                icon: Icons.watch_later_outlined,
+                text: "خدمة ٢٤ ساعة",
+              ),
               FeatureItem(icon: Icons.wifi, text: "إنترنت سريع"),
               FeatureItem(icon: Icons.bed_outlined, text: "مراتب طبية"),
               FeatureItem(icon: Icons.spa_outlined, text: "مستحضرات عضوية"),
             ],
           ),
-          
-          SizedBox(height: 24.h),
-          
-          /// 🔹 إضافة الخريطة
+
+          SizedBox(height: 24),
+
+          _buildMedicalSection(),
+
+          SizedBox(height: 24),
+
           _buildMapSection(),
-          
-          SizedBox(height: 20.h),
-          
-          // قسم التواصل
+
+          SizedBox(height: 24),
+
+          _buildSocialSection(),
+
+          SizedBox(height: 24),
+
           _buildContactSection(),
         ],
       ),
@@ -124,7 +134,7 @@ class AboutResortCard extends StatelessWidget {
                 color: Appcolors.bluecolor,
               ),
             ),
-            SizedBox(width: 8.w),
+            SizedBox(width: 8),
             Icon(
               Icons.location_on_outlined,
               size: 18.sp,
@@ -136,7 +146,7 @@ class AboutResortCard extends StatelessWidget {
         GestureDetector(
           onTap: _openMap,
           child: Container(
-            height: 160.h,
+            height: 160,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
@@ -172,7 +182,7 @@ class AboutResortCard extends StatelessWidget {
                                 size: 40.sp,
                                 color: Colors.grey[400],
                               ),
-                              SizedBox(height: 8.h),
+                              SizedBox(height: 8),
                               Text(
                                 "اضغط لعرض الموقع على الخريطة",
                                 style: TextStyle(
@@ -189,7 +199,7 @@ class AboutResortCard extends StatelessWidget {
                 ),
                 // علامة الموقع
                 Container(
-                  padding: EdgeInsets.all(12.w),
+                  padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.95),
                     shape: BoxShape.circle,
@@ -229,13 +239,10 @@ class AboutResortCard extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 4.h),
+        SizedBox(height: 4),
         Text(
           "أبو صير، الجيزة، مصر",
-          style: TextStyle(
-            fontSize: 11.sp,
-            color: Colors.grey[600],
-          ),
+          style: TextStyle(fontSize: 11.sp, color: Colors.grey[600]),
           textAlign: TextAlign.right,
         ),
       ],
@@ -244,117 +251,374 @@ class AboutResortCard extends StatelessWidget {
 
   Widget _buildContactSection() {
     return Container(
-      padding: EdgeInsets.all(16.w),
+      width: double.infinity,
+      padding: EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Appcolors.accentColor.withOpacity(0.1),
-            Appcolors.accentColor.withOpacity(0.05),
-          ],
+          colors: [Colors.white, Appcolors.accentColor.withOpacity(.05)],
         ),
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-          color: Appcolors.accentColor.withOpacity(0.3),
-          width: 1,
-        ),
+        borderRadius: BorderRadius.circular(25.r),
+        boxShadow: [
+          BoxShadow(
+            color: Appcolors.accentColor.withOpacity(.15),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          ),
+        ],
       ),
       child: Column(
         children: [
-          Text(
-            "تواصل مع المنتجع",
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-              color: Appcolors.bluecolor,
-            ),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            "01155665660",
-            style: TextStyle(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-              color: Appcolors.bluecolor,
-            ),
-          ),
-          SizedBox(height: 12.h),
+          /// Header
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _buildContactButton(
-                icon: Icons.phone_in_talk_outlined,
-                label: "اتصال",
-                number: "01155665660",
-                isPhone: true,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "تواصل مع المنتجع",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Appcolors.bluecolor,
+                    ),
+                  ),
+
+                  SizedBox(height: 4),
+
+                  Text(
+                    "دعم وإشراف متاح 24 ساعة",
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Appcolors.accentColor,
+                    ),
+                  ),
+                ],
               ),
-              _buildContactButton(
-                icon: Icons.message_outlined,
-                label: "واتساب",
-                number: "01155665660",
-                isPhone: false,
+
+              SizedBox(width: 10),
+
+              Container(
+                padding: EdgeInsets.all(10.w),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Appcolors.accentColor.withOpacity(.12),
+                ),
+                child: Icon(
+                  Icons.support_agent_rounded,
+                  color: Appcolors.accentColor,
+                  size: 28.sp,
+                ),
               ),
             ],
           ),
-          SizedBox(height: 8.h),
+
+          SizedBox(height: 20),
+
+          /// Phone Card
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(18),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(22.r),
+              boxShadow: [
+                BoxShadow(color: Colors.black.withOpacity(.08), blurRadius: 10),
+              ],
+            ),
+            child: Column(
+              children: [
+                Text(
+                  "01155665660",
+                  style: TextStyle(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Appcolors.bluecolor,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+
+                SizedBox(height: 14),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          _callNumber("01155665660");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 13.h),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Appcolors.bluecolor,
+                                Appcolors.bluecolor.withOpacity(.85),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(30.r),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.call,
+                                color: Colors.white,
+                                size: 18.sp,
+                              ),
+
+                              SizedBox(width: 6),
+
+                              Text(
+                                "اتصال",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(width: 12),
+
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          _openWhatsApp("01155665660");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 13),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.green,
+                                Colors.green.withOpacity(.8),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(30.r),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.chat,
+                                color: Colors.white,
+                                size: 18.sp,
+                              ),
+
+                              SizedBox(width: 6),
+
+                              Text(
+                                "واتساب",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 12),
+
+          Text(
+            "يمكنك التواصل معنا في أي وقت وسيتم الرد في أسرع وقت",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.grey.shade600, fontSize: 11.sp),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildContactButton({
-    required IconData icon,
-    required String label,
-    required String number,
-    required bool isPhone,
-  }) {
-    return GestureDetector(
-      onTap: () {
-        if (isPhone) {
-          _callNumber(number);
-        } else {
-          _openWhatsApp(number);
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12.h),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Appcolors.bluecolor,
-              Appcolors.bluecolor.withOpacity(0.9),
+  
+  Widget _buildMedicalSection() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Appcolors.bluecolor.withOpacity(0.08),
+            Appcolors.accentColor.withOpacity(0.05),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(22.r),
+        border: Border.all(color: Appcolors.accentColor.withOpacity(0.3)),
+        boxShadow: [
+          BoxShadow(
+            color: Appcolors.accentColor.withOpacity(.08),
+            blurRadius: 10,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                "الرعاية الطبية والإشراف",
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Appcolors.bluecolor,
+                ),
+              ),
+              SizedBox(width: 8),
+              Icon(Icons.health_and_safety, color: Appcolors.accentColor),
             ],
           ),
-          borderRadius: BorderRadius.circular(30.r),
-          boxShadow: [
-            BoxShadow(
-              color: Appcolors.accentColor.withOpacity(0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: Colors.white,
-              size: 20.sp,
-            ),
-            SizedBox(width: 8.w),
-            Text(
-              label,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+
+          SizedBox(height: 15),
+
+          _infoRow(Icons.verified_user, "مرخص من وزارة الصحة والسكان المصرية"),
+
+          _infoRow(Icons.medical_services, "إشراف طبي كامل على مدار الساعة"),
+
+          _infoRow(
+            Icons.psychology_alt,
+            "فريق من الأطباء والأخصائيين النفسيين والمعالجين السلوكيين",
+          ),
+
+          _infoRow(Icons.workspace_premium, "خبرة تمتد لأكثر من 15 عاماً"),
+        ],
       ),
     );
+  }
+
+  /// ================= SOCIAL =================
+  Widget _buildSocialSection() {
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            "تابع المنتجع على السوشيال ميديا",
+            style: TextStyle(
+              fontSize: 13.sp,
+              color: Colors.grey.shade700,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+      
+          SizedBox(height: 12),
+      
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            alignment: WrapAlignment.center,
+            children: [
+              _social(
+                FontAwesomeIcons.facebook,
+                "https://www.facebook.com/RecoverykNightsResort/",
+                Colors.blue,
+              ),
+      
+              _social(
+                FontAwesomeIcons.instagram,
+                "https://www.instagram.com/recoveryknightsresortgiza/",
+                Colors.purple,
+              ),
+      
+              _social(
+                FontAwesomeIcons.snapchat,
+                "https://www.snapchat.com/add/recoverynights",
+                Colors.amber,
+              ),
+      
+              _social(
+                FontAwesomeIcons.tiktok,
+                "https://www.tiktok.com/@recoverynightsresort",
+                Colors.black,
+              ),
+      
+              _social(
+                FontAwesomeIcons.youtube,
+                "https://www.youtube.com/@RecoverykNightsResort",
+                Colors.red,
+              ),
+            ],
+          ),
+      
+          SizedBox(height: 10.h),
+      
+          Text(
+            "اضغط على أي أيقونة للانتقال للصفحة الرسمية",
+            style: TextStyle(fontSize: 11.sp, color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _social(IconData icon, String url, Color color) {
+    return GestureDetector(
+      onTap: () => _openUrl(url),
+      child: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(.08), blurRadius: 10),
+          ],
+        ),
+        child: Icon(icon, size: 28.sp, color: color),
+      ),
+    );
+  }
+
+  Widget _infoRow(IconData icon, String text) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 14),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              text,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                fontSize: 13.sp,
+                color: Appcolors.bluecolor,
+                height: 1.5,
+              ),
+            ),
+          ),
+
+          SizedBox(width: 10),
+
+          Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Appcolors.accentColor.withOpacity(.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 18.sp, color: Appcolors.accentColor),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _openUrl(String url) async {
+    final uri = Uri.parse(url);
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   /// فتح الخريطة في Google Maps
@@ -362,11 +626,8 @@ class AboutResortCard extends StatelessWidget {
     final Uri url = Uri.parse(
       "https://maps.app.goo.gl/qcsqbroZMTDc86qP7?g_st=iw",
     );
-    
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    )) {
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       debugPrint("Could not open map");
       // يمكن إضافة SnackBar للمستخدم
     }
@@ -379,7 +640,10 @@ class AboutResortCard extends StatelessWidget {
 
   void _openWhatsApp(String number) async {
     String url = "https://wa.me/$number";
-    if (!await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication)) {
+    if (!await launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    )) {
       debugPrint("Could not open WhatsApp");
     }
   }
@@ -397,7 +661,9 @@ class FeatureItem extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
+            // ignore: deprecated_member_use
             Appcolors.greycolor.withOpacity(0.3),
+            // ignore: deprecated_member_use
             Appcolors.greycolor.withOpacity(0.1),
           ],
         ),

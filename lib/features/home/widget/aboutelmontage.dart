@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:forsan_eltafe/core/AnimatedEgyptFlag%20.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 
 class AboutElMontage extends StatefulWidget {
@@ -102,6 +103,7 @@ class _AboutElMontageState extends State<AboutElMontage> {
                     ),
                   ),
                 ),
+                AnimatedEgyptFlag(),
 
                 Text(
                   "عن المؤسسة",
@@ -125,8 +127,8 @@ class _AboutElMontageState extends State<AboutElMontage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25.r),
                 child: Image.asset(
-                  "assets/image/529488832_122168786084431327_1269645577539243124_n (1).png",
-                  fit: BoxFit.cover,
+                  "assets/image/appIcon.png",
+                  fit: BoxFit.contain,
                   width: double.infinity,
                   height: 180.h,
                 ),

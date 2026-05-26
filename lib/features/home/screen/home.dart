@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forsan_eltafe/core/AnimatedEgyptFlag%20.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/home/widget/Conectus.dart';
 import 'package:forsan_eltafe/features/home/widget/aboutelmontage.dart';
@@ -21,12 +22,15 @@ class _HomePageState extends State<HomePage> {
     double horizontalPadding = screenWidth > 500 ? 30 : 20;
     return Scaffold(
       backgroundColor: Appcolors.greycolor,
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: Column(
               children: [
+                const SizedBox(height: 10),
+              
                 SizedBox(height: 10),
                 image_and_service(),
                 SizedBox(height: 15),
@@ -50,9 +54,9 @@ class _HomePageState extends State<HomePage> {
                 AboutElMontage(),
                 SizedBox(height: 15),
                 TherapeuticPrograms(),
-                SizedBox(height: 15,),
+                SizedBox(height: 15),
                 Conectus(),
-                SizedBox(height: 100),
+                SizedBox(height: 110),
               ],
             ),
           ),
