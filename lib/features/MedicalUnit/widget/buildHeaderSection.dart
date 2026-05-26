@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
+import 'package:forsan_eltafe/features/MedicalUnit/widget/AnimatedEgyptFlag2.dart';
 
 Widget buildHeaderSection() {
   return Container(
@@ -29,6 +30,9 @@ Widget buildHeaderSection() {
     ),
     child: Column(
       children: [
+        Animatedegyptflag2(),
+
+        SizedBox(height: 15,),
 
         /// اللوجوهات فوق
         Row(
@@ -36,7 +40,7 @@ Widget buildHeaderSection() {
           children: [
 
             _buildLogo(
-              "assets/image/imagepngicons.png",
+              "assets/image/wehdano back.png",
             ),
 
             _buildLogo(

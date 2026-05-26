@@ -4,7 +4,9 @@ import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/Resort/widget/AboutResortCard%20.dart';
 import 'package:forsan_eltafe/features/Resort/widget/HeroImageSection.dart';
 import 'package:forsan_eltafe/features/Resort/widget/ResortCards.dart';
+import 'package:forsan_eltafe/features/Resort/widget/ResortHeaderSection.dart';
 import 'package:forsan_eltafe/features/Resort/widget/ResortVideoPage.dart';
+import 'package:forsan_eltafe/features/Resort/widget/ResortVisionSection.dart';
 import 'package:forsan_eltafe/features/Resort/widget/TaskTimeline.dart';
 
 class ResortPage extends StatefulWidget {
@@ -14,7 +16,8 @@ class ResortPage extends StatefulWidget {
   State<ResortPage> createState() => _ResortPageState();
 }
 
-class _ResortPageState extends State<ResortPage> with SingleTickerProviderStateMixin {
+class _ResortPageState extends State<ResortPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
@@ -42,7 +45,7 @@ class _ResortPageState extends State<ResortPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double horizontalPadding = screenWidth > 500 ? 30.w : 20.w;
-    
+
     return Scaffold(
       backgroundColor: Appcolors.greycolor,
       body: SafeArea(
@@ -54,22 +57,32 @@ class _ResortPageState extends State<ResortPage> with SingleTickerProviderStateM
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 12),
+
                   const HeroImageSection(),
-                  SizedBox(height: 20.h),
+
+                  SizedBox(height: 20),
+
+                  const ResortHeaderSection(),
+                  
+
+                  SizedBox(height: 20),
+
                   const ResortVideoWidget(),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 28),
                   ResortCards(),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 28),
                   const AboutResortCard(),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 28),
                   _buildSectionHeader(
                     title: "البرنامج اليومي العلاجي",
                     color: Appcolors.bluecolor,
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 20),
                   const TaskTimelineWidget(),
-                  SizedBox(height: 60.h),
+                  SizedBox(height: 20,),
+                  ResortVisionSection(),
+                  SizedBox(height: 110),
                 ],
               ),
             ),

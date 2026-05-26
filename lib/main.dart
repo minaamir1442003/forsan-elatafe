@@ -4,6 +4,7 @@ import 'package:forsan_eltafe/core/network/dio_helper.dart';
 import 'package:forsan_eltafe/core/shared_preferences_helper.dart';
 import 'package:forsan_eltafe/features/Onboarding/screen/onboarding_screen.dart';
 import 'package:forsan_eltafe/features/navigation_bar/navigation_bar.dart';
+import 'package:forsan_eltafe/features/splach/AnimatedSplashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +41,7 @@ class AppEntryPoint extends StatelessWidget {
     final hasSeenOnboarding = SharedPreferencesHelper.getHasSeenOnboarding();
     
     if (hasSeenOnboarding) {
-      return const CustomBottomNavigationBar();
+      return const AnimatedSplashScreen();
     } else {
       return const OnboardingScreen();
     }

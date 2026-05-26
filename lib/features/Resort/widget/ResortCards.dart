@@ -15,114 +15,110 @@ class _ResortCardsState extends State<ResortCards> {
   final List<Map<String, String>> items = const [
     {
       "image": "assets/montaga/montaga1.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "مسبح المنتجع الخاص",
+      "tag": "استرخاء و هدوء",
     },
     {
       "image": "assets/montaga/montaga2.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "مرحباً بكم في منتجعنا",
+      "tag": "البوابة الرئيسية",
     },
     {
       "image": "assets/montaga/montaga3.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
+      "title": "المبنى الرئيسي والاستقبال",
+      "tag": "خدمة ٢٤ ساعة",
     },
-      {
+    {
       "image": "assets/montaga/montaga4.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "صالة الاستقبال والانتظار",
+      "tag": "أهلاً بك",
     },
     {
       "image": "assets/montaga/montaga5.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "مكتب الاستشارات والإدارة",
+      "tag": "خصوصية تامة",
     },
     {
       "image": "assets/montaga/montaga6.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
+      "title": "أجنحة وصالات الإقامة المريحة",
+      "tag": "بيئة دافئة",
     },
-      {
+    {
       "image": "assets/montaga/montaga7.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "مرافق ومرفقات خدمية متكاملة",
+      "tag": "مرافق عامة",
     },
     {
       "image": "assets/montaga/montaga8.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "وجبات غذائية صحية ومتكاملة",
+      "tag": "تغذية متوازنة",
     },
     {
       "image": "assets/montaga/montaga9.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
+      "title": "خيارات متنوعة من الإفطار الشهي",
+      "tag": "وجبات يومية",
     },
-      {
+    {
       "image": "assets/montaga/montaga10.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "وجبات غداء شهية ومتنوعة يومياً",
+      "tag": "بوفيه متكامل",
     },
     {
       "image": "assets/montaga/montaga11.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "غرفة نوم خاصة مجهزة",
+      "tag": 'غرفة نوم مريحة',
     },
     {
       "image": "assets/montaga/montaga12.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
+      "title": "أجنحة إقامة ومساحات شخصية دافئة",
+      "tag": "خصوصية وراحة",
     },
-      {
+    {
       "image": "assets/montaga/montaga13.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "أثاث مريح وتجهيزات غرف متكاملة",
+      "tag": "غرف إقامة",
     },
     {
       "image": "assets/montaga/montaga14.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "قاعة المحاضرات واللقاءات الجماعية",
+      "tag": "جلسات التوعية",
     },
     {
       "image": "assets/montaga/montaga15.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
+      "title": "توفير كافة وسائل الراحة والخصوصية",
+      "tag": "إقامة هادئة",
     },
-      {
+    {
       "image": "assets/montaga/montaga16.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "منتجع فرسان التعافي",
+      "tag": "تأهيل سلوكي",
     },
     {
       "image": "assets/montaga/montaga17.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "ممرات واسعة ومحاطة بالأشجار",
+      "tag": "أجواء نقية",
     },
     {
       "image": "assets/montaga/montaga18.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
-    },  {
+      "title": "قاعات الضيافة واللاونج",
+      "tag": "أجواء دافئة ومريحة",
+    },
+    {
       "image": "assets/montaga/montaga19.jpeg",
-      "title": "هدوء الطبيعة",
-      "tag": "جناح ديلوكس",
+      "title": "أجنحة الإقامة الفاخرة",
+      "tag": "خصوصية وتصميم مريح",
     },
     {
       "image": "assets/montaga/montaga20.jpeg",
-      "title": "إطلالة البحر",
-      "tag": "جناح خاص",
+      "title": "إطلالة جبلية ساحرة",
+      "tag": "طبيعة خلابة ونقاء",
     },
     {
       "image": "assets/montaga/montaga21.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
+      "title": "الصالة الرياضية والترفيهية",
+      "tag": "أنشطة وتفريغ طاقة",
     },
-    {
-      "image": "assets/montaga/montaga22.jpeg",
-      "title": "الاسترخاء التام",
-      "tag": "غرفة مميزة",
-    },
-
+  
   ];
 
   @override
@@ -138,14 +134,12 @@ class _ResortCardsState extends State<ResortCards> {
             builder: (context, child) {
               double scale = 1.0;
               if (_pageController.hasClients) {
-                final page = _pageController.page ?? _pageController.initialPage;
+                final page =
+                    _pageController.page ?? _pageController.initialPage;
                 final difference = (page - index).abs();
                 scale = 1 - (difference * 0.1); // تأثير تصغير للكروت الجانبية
               }
-              return Transform.scale(
-                scale: scale,
-                child: child,
-              );
+              return Transform.scale(scale: scale, child: child);
             },
             child: _buildCard(items[index]),
           );
@@ -171,7 +165,7 @@ class _ResortCardsState extends State<ResortCards> {
                     width: double.infinity,
                     height: double.infinity,
                     // إضافة loading indicator
-                  
+
                     // في حالة فشل تحميل الصورة
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
@@ -187,7 +181,7 @@ class _ResortCardsState extends State<ResortCards> {
                     },
                   ),
                 ),
-                
+
                 // overlay خفيف لتحسين قراءة النص
                 Positioned.fill(
                   child: ClipRRect(
@@ -212,7 +206,10 @@ class _ResortCardsState extends State<ResortCards> {
                   top: 12,
                   right: 12,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 6.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.95),
                       borderRadius: BorderRadius.circular(30.r),

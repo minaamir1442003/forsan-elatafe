@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/Profile/screen/ProfilePage.dart';
+import 'package:forsan_eltafe/features/Profile/widget/AnimatedEgyptFlagGlass.dart';
 import 'package:forsan_eltafe/features/Profile/widget/profile_header.dart';
 import 'package:forsan_eltafe/features/Profile/widget/record_card.dart';
 import 'package:forsan_eltafe/features/navigation_bar/navigation_bar.dart';
@@ -20,14 +21,16 @@ class ShowprofileScreen extends StatelessWidget {
 
   Future<void> _logout(BuildContext context) async {
     final cubit = context.read<HomeCubit>();
-    
-    // محاولة تسجيل الخروج من الـ API
+
     final success = await cubit.logout(token);
-    
+
     if (context.mounted) {
       if (success) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const CustomBottomNavigationBar(initialIndex: 3)),
+          MaterialPageRoute(
+            builder: (context) =>
+                const CustomBottomNavigationBar(initialIndex: 3),
+          ),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -56,7 +59,11 @@ class ShowprofileScreen extends StatelessWidget {
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.health_and_safety_rounded, color: Appcolors.accentColorNew, size: 28),
+                  Icon(
+                    Icons.health_and_safety_rounded,
+                    color: Appcolors.accentColorNew,
+                    size: 28,
+                  ),
                   const SizedBox(width: 12),
                   const Text(
                     'فرسان التعافي',
@@ -67,6 +74,11 @@ class ShowprofileScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              leading: Container(
+                padding: const EdgeInsets.only(left: 1),
+              
+                child: Animatedegyptflagglass(),
               ),
               centerTitle: true,
               backgroundColor: Appcolors.cardBackground,
@@ -109,89 +121,12 @@ class ShowprofileScreen extends StatelessWidget {
                 }
 
                 if (state is HomeSuccess) {
-                  return RefreshIndicator(
-                    onRefresh: () async {
-                      await context.read<HomeCubit>().getAllData(token);
-                    },
-                    color: Appcolors.accentColorNew,
-                    child: SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: Column(
-                        children: [
-                          ProfileHeader(
-                            patientName: patientName,
-                            profile: state.profile,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 6,
-                                  height: 28,
-                                  decoration: BoxDecoration(
-                                    color: Appcolors.accentColorNew,
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                                const SizedBox(width: 12),
-                                Text(
-                                  '📋 السجلات الطبية',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w800,
-                                    color: Appcolors.primaryColor,
-                                    letterSpacing: 0.5,
-                                  ),
-                                ),
-                                const Spacer(),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    color: Appcolors.accentColorNew.withOpacity(0.15),
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  child: Text(
-                                    '${state.records.length} سجل',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Appcolors.accentColorNew,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          if (state.records.isEmpty)
-                            Container(
-                              margin: const EdgeInsets.all(24),
-                              padding: const EdgeInsets.all(50),
-                              decoration: BoxDecoration(
-                                color: Appcolors.cardBackground,
-                                borderRadius: BorderRadius.circular(28),
-                              ),
-                              child: Column(
-                                children: [
-                                  Icon(Icons.folder_open_rounded, size: 64, color: Colors.grey.shade400),
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    'لا توجد سجلات طبية',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: Appcolors.textLight,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          else
-                            ...state.records.map((record) => RecordCard(record: record)).toList(),
-                          const SizedBox(height: 40),
-                        ],
-                      ),
-                    ),
+                  // --- فلترة السجلات حسب الرتبة ---
+                  return _FilteredRecordsView(
+                    token: token,
+                    allRecords: state.records,
+                    profile: state.profile,
+                    patientName: patientName,
                   );
                 }
 
@@ -200,7 +135,11 @@ class ShowprofileScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.wifi_off_rounded, size: 80, color: Colors.grey.shade400),
+                        Icon(
+                          Icons.wifi_off_rounded,
+                          size: 80,
+                          color: Colors.grey.shade400,
+                        ),
                         const SizedBox(height: 24),
                         Text(
                           'عذراً، حدث خطأ',
@@ -228,7 +167,10 @@ class ShowprofileScreen extends StatelessWidget {
                             context.read<HomeCubit>().getAllData(token);
                           },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 14,
+                            ),
                             decoration: BoxDecoration(
                               color: Appcolors.accentColorNew,
                               borderRadius: BorderRadius.circular(40),
@@ -236,7 +178,11 @@ class ShowprofileScreen extends StatelessWidget {
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.refresh_rounded, size: 22, color: Colors.white),
+                                Icon(
+                                  Icons.refresh_rounded,
+                                  size: 22,
+                                  color: Colors.white,
+                                ),
                                 SizedBox(width: 10),
                                 Text(
                                   'إعادة المحاولة',
@@ -260,6 +206,244 @@ class ShowprofileScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+// ✅ واجهة جديدة للفلترة والحفاظ على الكود نظيف
+class _FilteredRecordsView extends StatefulWidget {
+  final String token;
+  final List<dynamic> allRecords;
+  final Map<String, dynamic> profile;
+  final String patientName;
+
+  const _FilteredRecordsView({
+    required this.token,
+    required this.allRecords,
+    required this.profile,
+    required this.patientName,
+  });
+
+  @override
+  State<_FilteredRecordsView> createState() => _FilteredRecordsViewState();
+}
+
+class _FilteredRecordsViewState extends State<_FilteredRecordsView> {
+  String _selectedRole =
+      'all'; // 'all', 'doctor', 'specialist', 'supervisor', 'nurse'
+
+  // الحصول على قائمة فريدة من الرتب الموجودة فعلاً في السجلات
+  List<String> get _availableRoles {
+    final roles = <String>{};
+    for (final record in widget.allRecords) {
+      final createdBy = record['createdBy'] as Map<String, dynamic>?;
+      final role = createdBy?['role'] as String?;
+      if (role != null && role.isNotEmpty) {
+        roles.add(role);
+      }
+    }
+    return roles.toList();
+  }
+
+  // فلترة السجلات حسب الرتبة المختارة
+  List<dynamic> get _filteredRecords {
+    if (_selectedRole == 'all') {
+      return widget.allRecords;
+    }
+    return widget.allRecords.where((record) {
+      final createdBy = record['createdBy'] as Map<String, dynamic>?;
+      final role = createdBy?['role'] as String?;
+      return role == _selectedRole;
+    }).toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () async {
+        await context.read<HomeCubit>().getAllData(widget.token);
+      },
+      color: Appcolors.accentColorNew,
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Column(
+          children: [
+            ProfileHeader(
+              patientName: widget.patientName,
+              profile: widget.profile,
+            ),
+
+            // عنوان السجلات + أزرار الفلتر
+            Container(
+              margin: const EdgeInsets.fromLTRB(24, 24, 24, 12),
+              child: Row(
+                children: [
+                  Container(
+                    width: 6,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: Appcolors.accentColorNew,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    '📋 السجلات الطبية',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                      color: Appcolors.primaryColor,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Appcolors.accentColorNew.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      '${_filteredRecords.length} سجل',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Appcolors.accentColorNew,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // ✅ أزرار الفلتر (Chips) بشكل جميل
+            if (_availableRoles.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                height: 48,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    _buildFilterChip('الكل', 'all'),
+                    if (_availableRoles.contains('doctor'))
+                      _buildFilterChip('🩺 دكتور', 'doctor'),
+                    if (_availableRoles.contains('specialist'))
+                      _buildFilterChip('🧠 أخصائي', 'specialist'),
+                    if (_availableRoles.contains('supervisor'))
+                      _buildFilterChip('🛡️ مشرف', 'supervisor'),
+                    if (_availableRoles.contains('nurse'))
+                      _buildFilterChip('💉 تمريض', 'nurse'),
+                  ],
+                ),
+              ),
+
+            // السجلات المفلترة
+            if (_filteredRecords.isEmpty)
+              Container(
+                margin: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(50),
+                decoration: BoxDecoration(
+                  color: Appcolors.cardBackground,
+                  borderRadius: BorderRadius.circular(28),
+                ),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.filter_alt_off_rounded,
+                      size: 64,
+                      color: Colors.grey.shade400,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'لا توجد سجلات لهذا التصنيف',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Appcolors.textLight,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              ..._filteredRecords
+                  .map((record) => RecordCard(record: record))
+                  .toList(),
+
+            const SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ويدجت حبة الفلتر (Chip) الجميلة
+  Widget _buildFilterChip(String label, String roleValue) {
+    final isSelected = _selectedRole == roleValue;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedRole = roleValue;
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          gradient: isSelected
+              ? LinearGradient(
+                  colors: [
+                    Appcolors.accentColorNew,
+                    Appcolors.accentColorNew.withOpacity(0.8),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                )
+              : null,
+          color: isSelected ? null : Appcolors.cardBackground,
+          borderRadius: BorderRadius.circular(40),
+          border: Border.all(
+            color: isSelected
+                ? Colors.transparent
+                : Appcolors.accentColorNew.withOpacity(0.5),
+            width: 1.5,
+          ),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: Appcolors.accentColorNew.withOpacity(0.4),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : null,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (isSelected)
+              const Icon(
+                Icons.check_circle_rounded,
+                size: 18,
+                color: Colors.white,
+              ),
+            if (isSelected) const SizedBox(width: 8),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: isSelected ? Colors.white : Appcolors.primaryColor,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
