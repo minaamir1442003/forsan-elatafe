@@ -1,6 +1,5 @@
-// ignore_for_file: unused_element
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:intl/intl.dart';
 
@@ -32,66 +31,77 @@ class ProfileHeader extends StatelessWidget {
     }
   }
 
-  String _getStageName(String stage) {
-    switch (stage) {
-      case 'acute':
-        return 'المرحلة الحادة';
-      case 'transitional':
-        return 'المرحلة الانتقالية';
-      case 'supportive':
-        return 'المرحلة الداعمة';
-      default:
-        return stage;
-    }
+  // ========== معلومات المراحل العلاجية بالعربي ==========
+  Map<String, Map<String, String>> get _stageInfo => {
+    'acute': {
+      'name': 'المرحلة الحادة',
+      'icon': '⚠️',
+      'description': 'يتم التركيز على استقرار الحالة وتقليل الأعراض الحادة',
+      'color': '#E74C3C', // أحمر
+    },
+    'transitional': {
+      'name': 'المرحلة الانتقالية',
+      'icon': '🔄',
+      'description': 'يتم تعليم الفرد مهارات التعامل مع الأعراض والضغوط النفسية',
+      'color': '#F39C12', // برتقالي
+    },
+    'rehabilitative': {
+      'name': 'المرحلة التأهيلية',
+      'icon': '🏋️',
+      'description': 'يتم تعليم الفرد مهارات حياتية واجتماعية ضرورية للعيش المستقل',
+      'color': '#3498DB', // أزرق
+    },
+    'supportive': {
+      'name': 'المرحلة الداعمة',
+      'icon': '🌟',
+      'description': 'يتم تقديم الدعم المستمر للفرد لمساعدته في الحفاظ على التقدم المحرز',
+      'color': '#27AE60', // أخضر
+    },
+    'preventive': {
+      'name': 'المرحلة الوقائية',
+      'icon': '🛡️',
+      'description': 'يتم تعليم الفرد استراتيجيات الوقاية من الانتكاسة والتعامل مع الضغوط النفسية',
+      'color': '#9B59B6', // بنفسجي
+    },
+    'monitoring': {
+      'name': 'المتابعة والتقييم المستمر',
+      'icon': '📊',
+      'description': 'يتم متابعة الحالة وتقييمها بشكل مستمر لضمان استمرار التقدم والتحسن',
+      'color': '#1ABC9C', // تركواز
+    },
+  };
+
+  String _getStageName(String stageId) {
+    return _stageInfo[stageId]?['name'] ?? stageId;
   }
 
-  String _getStageIcon(String stage) {
-    switch (stage) {
-      case 'acute':
-        return '⚠️';
-      case 'transitional':
-        return '🔄';
-      case 'supportive':
-        return '🌟';
-      default:
-        return '📌';
-    }
+  String _getStageIcon(String stageId) {
+    return _stageInfo[stageId]?['icon'] ?? '📌';
   }
 
-  String _getStageDescription(String stage) {
-    switch (stage) {
-      case 'acute':
-        return 'العلاج المكثف والرعاية المستمرة';
-      case 'transitional':
-        return 'خطوة towards recovery';
-      case 'supportive':
-        return 'أنت في طريقك للتعافي الكامل 💪';
-      default:
-        return '';
-    }
+  String _getStageDescription(String stageId) {
+    return _stageInfo[stageId]?['description'] ?? '';
   }
 
-  Color _getStageColor(String stage) {
-    switch (stage) {
-      case 'acute':
-        return Colors.red;
-      case 'transitional':
-        return Colors.orange;
-      case 'supportive':
-        return Colors.green;
-      default:
-        return Appcolors.accentColorNew;
-    }
+  Color _getStageColor(String stageId) {
+    final colorHex = _stageInfo[stageId]?['color'] ?? '#C6A75E';
+    return Color(int.parse('0xFF${colorHex.substring(1)}'));
   }
 
-  int _getStageProgress(String stage) {
-    switch (stage) {
+  int _getStageProgress(String stageId) {
+    switch (stageId) {
       case 'acute':
-        return 25;
+        return 20;
       case 'transitional':
-        return 60;
+        return 40;
+      case 'rehabilitative':
+        return 65;
       case 'supportive':
-        return 90;
+        return 85;
+      case 'preventive':
+        return 95;
+      case 'monitoring':
+        return 100;
       default:
         return 0;
     }
@@ -110,113 +120,123 @@ class ProfileHeader extends StatelessWidget {
         children: [
           // Welcome Card
           Container(
-            padding: const EdgeInsets.all(28),
+  padding: const EdgeInsets.all(15),
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Appcolors.primaryColor,
+        Appcolors.primaryColor.withOpacity(0.95),
+      ],
+    ),
+    borderRadius: BorderRadius.circular(32),
+    boxShadow: [
+      BoxShadow(
+        color: Appcolors.primaryColor.withOpacity(0.3),
+        blurRadius: 20,
+        offset: const Offset(0, 10),
+      ),
+    ],
+  ),
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.center, // 👈 توسيط عمودي
+    children: [
+      Column(
+        mainAxisSize: MainAxisSize.min, // 👈 ياخد أقل حجم ممكن
+        children: [
+          Container(
+            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Appcolors.primaryColor,
-                  // ignore: deprecated_member_use
-                  Appcolors.primaryColor.withOpacity(0.95),
-                ],
+              color: Appcolors.accentColorNew.withOpacity(0.2),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.person_rounded,
+              size: 48,
+              color: Appcolors.accentColorNew,
+            ),
+          ),
+          SizedBox(height: 10.h),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+            decoration: BoxDecoration(
+              color: profile['status'] == 'resident'
+                  ? Appcolors.successColor.withOpacity(0.15)
+                  : Appcolors.warningColor.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(40),
+              border: Border.all(
+                color: profile['status'] == 'resident'
+                    ? Appcolors.successColor
+                    : Appcolors.warningColor,
+                width: 1.5,
               ),
-              borderRadius: BorderRadius.circular(32),
-              boxShadow: [
-                BoxShadow(
-                  // ignore: deprecated_member_use
-                  color: Appcolors.primaryColor.withOpacity(0.3),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
-                ),
-              ],
             ),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    color: Appcolors.accentColorNew.withOpacity(0.2),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.person_rounded,
-                    size: 48,
-                    color: Appcolors.accentColorNew,
-                  ),
+                Icon(
+                  profile['status'] == 'resident'
+                      ? Icons.check_circle_rounded
+                      : Icons.remove_circle_rounded,
+                  size: 18,
+                  color: profile['status'] == 'resident'
+                      ? Appcolors.successColor
+                      : Appcolors.warningColor,
                 ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'مرحباً بك',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey.shade300,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        patientName,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-                  decoration: BoxDecoration(
+                const SizedBox(width: 8),
+                Text(
+                  profile['status'] == 'resident' ? 'مقيم' : 'غير مقيم',
+                  style: TextStyle(
                     color: profile['status'] == 'resident'
-                        ? Appcolors.successColor.withOpacity(0.15)
-                        : Appcolors.warningColor.withOpacity(0.15),
-                    borderRadius: BorderRadius.circular(40),
-                    border: Border.all(
-                      color: profile['status'] == 'resident'
-                          ? Appcolors.successColor
-                          : Appcolors.warningColor,
-                      width: 1.5,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        profile['status'] == 'resident'
-                            ? Icons.check_circle_rounded
-                            : Icons.remove_circle_rounded,
-                        size: 18,
-                        color: profile['status'] == 'resident'
-                            ? Appcolors.successColor
-                            : Appcolors.warningColor,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        profile['status'] == 'resident' ? 'مقيم' : 'غير مقيم',
-                        style: TextStyle(
-                          color: profile['status'] == 'resident'
-                              ? Appcolors.successColor
-                              : Appcolors.warningColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
+                        ? Appcolors.successColor
+                        : Appcolors.warningColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
             ),
           ),
+        ],
+      ),
+      const SizedBox(width: 20),
+      Expanded(  // 👈 مهم: يسمح للعمود الأيمن بأخذ المساحة المتبقية
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              'مرحباً بك',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey.shade300,
+                letterSpacing: 1,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              patientName,
+              style: TextStyle(
+                fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1,
+              ),
+              textAlign: TextAlign.end,
+              maxLines: 2,                    // 👈 يسمح بسطرين
+              overflow: TextOverflow.ellipsis, // 👈 لو أكبر يتقطع بـ ...
+              softWrap: true,                 // 👈 يسمح بالتفاف النص
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
+),
           const SizedBox(height: 16),
 
-          // ========== المراحل العلاجية (therapeuticHistory) بشكل محسن ==========
+          // ========== رحلة التعافي (المراحل العلاجية) ==========
           if (reversedHistory.isNotEmpty) ...[
             Container(
               padding: const EdgeInsets.all(20),
@@ -291,13 +311,13 @@ class ProfileHeader extends StatelessWidget {
                   ...reversedHistory.asMap().entries.map((entry) {
                     final index = entry.key;
                     final history = entry.value;
-                    final stage = history['stage'] ?? '';
+                    final stageId = history['stage'] ?? '';
                     final changedBy = history['changedBy'] as Map?;
                     final name = changedBy?['name'] ?? '';
                     final role = changedBy?['role'] ?? '';
                     final changedAt = history['changedAt'] ?? '';
                     final isLast = index == reversedHistory.length - 1;
-                    final isSupportive = stage == 'supportive';
+                    final isLastStage = stageId == 'supportive' || stageId == 'monitoring';
                     
                     return Column(
                       children: [
@@ -314,14 +334,15 @@ class ProfileHeader extends StatelessWidget {
                                     height: 32,
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
-                                        colors: isSupportive
-                                            ? [Appcolors.successColor, Colors.green.shade300]
-                                            : [_getStageColor(stage), _getStageColor(stage).withOpacity(0.7)],
+                                        colors: [
+                                          _getStageColor(stageId),
+                                          _getStageColor(stageId).withOpacity(0.7),
+                                        ],
                                       ),
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: _getStageColor(stage).withOpacity(0.3),
+                                          color: _getStageColor(stageId).withOpacity(0.3),
                                           blurRadius: 8,
                                           offset: const Offset(0, 2),
                                         ),
@@ -329,7 +350,7 @@ class ProfileHeader extends StatelessWidget {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _getStageIcon(stage),
+                                        _getStageIcon(stageId),
                                         style: const TextStyle(fontSize: 16),
                                       ),
                                     ),
@@ -344,7 +365,7 @@ class ProfileHeader extends StatelessWidget {
                                           begin: Alignment.topCenter,
                                           end: Alignment.bottomCenter,
                                           colors: [
-                                            _getStageColor(stage),
+                                            _getStageColor(stageId),
                                             _getStageColor(reversedHistory[index + 1]['stage'] ?? ''),
                                           ],
                                         ),
@@ -358,23 +379,13 @@ class ProfileHeader extends StatelessWidget {
                             // العمود الأيسر (المحتوى)
                             Expanded(
                               child: Container(
-                                margin:  EdgeInsets.only(bottom: isLast ? 0 : 16),
+                                margin: EdgeInsets.only(bottom: isLast ? 0 : 16),
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
-                                  gradient: isSupportive
-                                      ? LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            _getStageColor(stage).withOpacity(0.12),
-                                            _getStageColor(stage).withOpacity(0.06),
-                                          ],
-                                        )
-                                      : null,
-                                  color: isSupportive ? null : _getStageColor(stage).withOpacity(0.06),
+                                  color: _getStageColor(stageId).withOpacity(0.06),
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all(
-                                    color: _getStageColor(stage).withOpacity(0.2),
+                                    color: _getStageColor(stageId).withOpacity(0.2),
                                     width: 1.5,
                                   ),
                                 ),
@@ -384,25 +395,25 @@ class ProfileHeader extends StatelessWidget {
                                     Row(
                                       children: [
                                         Text(
-                                          _getStageName(stage),
+                                          _getStageName(stageId),
                                           style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.w800,
-                                            color: _getStageColor(stage),
+                                            color: _getStageColor(stageId),
                                           ),
                                         ),
                                         const Spacer(),
                                         Container(
                                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                           decoration: BoxDecoration(
-                                            color: _getStageColor(stage).withOpacity(0.15),
+                                            color: _getStageColor(stageId).withOpacity(0.15),
                                             borderRadius: BorderRadius.circular(12),
                                           ),
                                           child: Text(
                                             _formatDateTime(changedAt),
                                             style: TextStyle(
                                               fontSize: 11,
-                                              color: _getStageColor(stage),
+                                              color: _getStageColor(stageId),
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
@@ -411,10 +422,12 @@ class ProfileHeader extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 8),
                                     Text(
-                                      _getStageDescription(stage),
+                                      _getStageDescription(stageId),
+                                      textAlign: TextAlign.right,
                                       style: TextStyle(
                                         fontSize: 13,
                                         color: Colors.grey.shade600,
+                                        height: 1.4,
                                       ),
                                     ),
                                     const SizedBox(height: 8),
@@ -422,38 +435,38 @@ class ProfileHeader extends StatelessWidget {
                                       children: [
                                         Icon(Icons.person_outline, size: 14, color: Colors.grey.shade500),
                                         const SizedBox(width: 4),
-                                        Text(
-                                          '$name - $role',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey.shade500,
+                                        Expanded(
+                                          child: Text(
+                                            '$name - $role',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey.shade500,
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
                                     
-                                    // شريط التقدم (للمرحلة الداعمة فقط)
-                                    if (isSupportive) ...[
-                                      const SizedBox(height: 12),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: LinearProgressIndicator(
-                                          value: 0.85,
-                                          backgroundColor: Colors.grey.shade200,
-                                          color: Appcolors.successColor,
-                                          minHeight: 6,
-                                        ),
+                                    // شريط التقدم
+                                    const SizedBox(height: 12),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: LinearProgressIndicator(
+                                        value: _getStageProgress(stageId) / 100,
+                                        backgroundColor: Colors.grey.shade200,
+                                        color: _getStageColor(stageId),
+                                        minHeight: 6,
                                       ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        '85% مكتمل - قريباً من التعافي الكامل 🎉',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: Appcolors.successColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      '${_getStageProgress(stageId)}% مكتمل',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: _getStageColor(stageId),
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                    ],
+                                    ),
                                   ],
                                 ),
                               ),
@@ -463,6 +476,49 @@ class ProfileHeader extends StatelessWidget {
                       ],
                     );
                   }).toList(),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+          ] else ...[
+            // لو مفيش تاريخ علاجي
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Appcolors.cardBackground,
+                borderRadius: BorderRadius.circular(32),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 15,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.timeline_outlined,
+                    size: 48,
+                    color: Appcolors.textLight,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'لم يتم تحديد رحلة التعافي حتى الآن',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Appcolors.textLight,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'سيتم تحديث رحلة التعافي الخاصة بك قريباً',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Appcolors.textLight.withOpacity(0.8),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -498,7 +554,9 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 _buildStatItem(
                   Icons.work_rounded,
-                  profile['occupation'] ?? '--',
+                  profile['occupation']?.isNotEmpty == true 
+                      ? profile['occupation'] 
+                      : 'غير محدد',
                   "المهنة",
                 ),
                 Container(

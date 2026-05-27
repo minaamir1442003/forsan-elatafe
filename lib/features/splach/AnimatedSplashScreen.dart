@@ -185,7 +185,7 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen>
                 ),
                 child: ClipOval(
                   child: Image.asset(
-                    'assets/image/splach1.jpg',
+                    'assets/image/WhatsApp Image 2026-05-27 at 3.12.22 AM.jpeg',
                     height: 200,
                     width: 200,
                     fit: BoxFit.cover,
