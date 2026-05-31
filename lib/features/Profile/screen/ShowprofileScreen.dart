@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forsan_eltafe/core/appcolors.dart';
 import 'package:forsan_eltafe/features/Profile/screen/ProfilePage.dart';
 import 'package:forsan_eltafe/features/Profile/widget/AnimatedEgyptFlagGlass.dart';
@@ -64,12 +65,12 @@ class ShowprofileScreen extends StatelessWidget {
                     color: Appcolors.accentColorNew,
                     size: 28,
                   ),
-                  const SizedBox(width: 12),
-                  const Text(
+                  const SizedBox(width: 5),
+                  Text(
                     'فرسان التعافي',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: 20.sp,
                       letterSpacing: 1,
                     ),
                   ),
@@ -77,7 +78,7 @@ class ShowprofileScreen extends StatelessWidget {
               ),
               leading: Container(
                 padding: const EdgeInsets.only(left: 1),
-              
+
                 child: Animatedegyptflagglass(),
               ),
               centerTitle: true,
@@ -86,11 +87,34 @@ class ShowprofileScreen extends StatelessWidget {
               toolbarHeight: 80,
               foregroundColor: Appcolors.primaryColor,
               actions: [
-                Container(
-                  margin: const EdgeInsets.only(right: 16),
-                  child: IconButton(
-                    icon: const Icon(Icons.logout_rounded, size: 28),
-                    onPressed: () => _logout(context),
+                Padding(
+                  padding: const EdgeInsets.only(right: 7),
+                  child: GestureDetector(
+                    onTap: () => _logout(context),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 5,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0.12),
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: Colors.red, width: 1.2),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "حذف الحساب",
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ],
