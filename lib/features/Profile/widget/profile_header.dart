@@ -42,31 +42,36 @@ class ProfileHeader extends StatelessWidget {
     'transitional': {
       'name': 'المرحلة الانتقالية',
       'icon': '🔄',
-      'description': 'يتم تعليم الفرد مهارات التعامل مع الأعراض والضغوط النفسية',
+      'description':
+          'يتم تعليم الفرد مهارات التعامل مع الأعراض والضغوط النفسية',
       'color': '#F39C12', // برتقالي
     },
     'rehabilitative': {
       'name': 'المرحلة التأهيلية',
       'icon': '🏋️',
-      'description': 'يتم تعليم الفرد مهارات حياتية واجتماعية ضرورية للعيش المستقل',
+      'description':
+          'يتم تعليم الفرد مهارات حياتية واجتماعية ضرورية للعيش المستقل',
       'color': '#3498DB', // أزرق
     },
     'supportive': {
       'name': 'المرحلة الداعمة',
       'icon': '🌟',
-      'description': 'يتم تقديم الدعم المستمر للفرد لمساعدته في الحفاظ على التقدم المحرز',
+      'description':
+          'يتم تقديم الدعم المستمر للفرد لمساعدته في الحفاظ على التقدم المحرز',
       'color': '#27AE60', // أخضر
     },
     'preventive': {
       'name': 'المرحلة الوقائية',
       'icon': '🛡️',
-      'description': 'يتم تعليم الفرد استراتيجيات الوقاية من الانتكاسة والتعامل مع الضغوط النفسية',
+      'description':
+          'يتم تعليم الفرد استراتيجيات الوقاية من الانتكاسة والتعامل مع الضغوط النفسية',
       'color': '#9B59B6', // بنفسجي
     },
     'monitoring': {
       'name': 'المتابعة والتقييم المستمر',
       'icon': '📊',
-      'description': 'يتم متابعة الحالة وتقييمها بشكل مستمر لضمان استمرار التقدم والتحسن',
+      'description':
+          'يتم متابعة الحالة وتقييمها بشكل مستمر لضمان استمرار التقدم والتحسن',
       'color': '#1ABC9C', // تركواز
     },
   };
@@ -110,7 +115,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final therapeuticHistory = profile['therapeuticHistory'] as List? ?? [];
-    
+
     // عكس الترتيب عشان الأحدث يظهر أولاً
     final reversedHistory = therapeuticHistory.reversed.toList();
 
@@ -120,134 +125,138 @@ class ProfileHeader extends StatelessWidget {
         children: [
           // Welcome Card
           Container(
-  padding: const EdgeInsets.all(15),
-  decoration: BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        Appcolors.primaryColor,
-        Appcolors.primaryColor.withOpacity(0.95),
-      ],
-    ),
-    borderRadius: BorderRadius.circular(32),
-    boxShadow: [
-      BoxShadow(
-        color: Appcolors.primaryColor.withOpacity(0.3),
-        blurRadius: 20,
-        offset: const Offset(0, 10),
-      ),
-    ],
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    crossAxisAlignment: CrossAxisAlignment.center, // 👈 توسيط عمودي
-    children: [
-      Column(
-        mainAxisSize: MainAxisSize.min, // 👈 ياخد أقل حجم ممكن
-        children: [
-          Container(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Appcolors.accentColorNew.withOpacity(0.2),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.person_rounded,
-              size: 48,
-              color: Appcolors.accentColorNew,
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-            decoration: BoxDecoration(
-              color: profile['status'] == 'resident'
-                  ? Appcolors.successColor.withOpacity(0.15)
-                  : Appcolors.warningColor.withOpacity(0.15),
-              borderRadius: BorderRadius.circular(40),
-              border: Border.all(
-                color: profile['status'] == 'resident'
-                    ? Appcolors.successColor
-                    : Appcolors.warningColor,
-                width: 1.5,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Appcolors.primaryColor,
+                  Appcolors.primaryColor.withOpacity(0.95),
+                ],
               ),
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [
+                BoxShadow(
+                  color: Appcolors.primaryColor.withOpacity(0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
             ),
             child: Row(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center, // 👈 توسيط عمودي
               children: [
-                Icon(
-                  profile['status'] == 'resident'
-                      ? Icons.check_circle_rounded
-                      : Icons.remove_circle_rounded,
-                  size: 18,
-                  color: profile['status'] == 'resident'
-                      ? Appcolors.successColor
-                      : Appcolors.warningColor,
+                Column(
+                  mainAxisSize: MainAxisSize.min, // 👈 ياخد أقل حجم ممكن
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                        color: Appcolors.accentColorNew.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.person_rounded,
+                        size: 48,
+                        color: Appcolors.accentColorNew,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: profile['status'] == 'resident'
+                            ? Appcolors.successColor.withOpacity(0.15)
+                            : Appcolors.warningColor.withOpacity(0.15),
+                        borderRadius: BorderRadius.circular(40),
+                        border: Border.all(
+                          color: profile['status'] == 'resident'
+                              ? Appcolors.successColor
+                              : Appcolors.warningColor,
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            profile['status'] == 'resident'
+                                ? Icons.check_circle_rounded
+                                : Icons.remove_circle_rounded,
+                            size: 18,
+                            color: profile['status'] == 'resident'
+                                ? Appcolors.successColor
+                                : Appcolors.warningColor,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            profile['status'] == 'resident'
+                                ? 'مقيم'
+                                : 'غير مقيم',
+                            style: TextStyle(
+                              color: profile['status'] == 'resident'
+                                  ? Appcolors.successColor
+                                  : Appcolors.warningColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  profile['status'] == 'resident' ? 'مقيم' : 'غير مقيم',
-                  style: TextStyle(
-                    color: profile['status'] == 'resident'
-                        ? Appcolors.successColor
-                        : Appcolors.warningColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                const SizedBox(width: 20),
+                Expanded(
+                  // 👈 مهم: يسمح للعمود الأيمن بأخذ المساحة المتبقية
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'مرحباً بك',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey.shade300,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        patientName,
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 1,
+                        ),
+                        textAlign: TextAlign.end,
+                        maxLines: 2, // 👈 يسمح بسطرين
+                        overflow:
+                            TextOverflow.ellipsis, // 👈 لو أكبر يتقطع بـ ...
+                        softWrap: true, // 👈 يسمح بالتفاف النص
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
-      const SizedBox(width: 20),
-      Expanded(  // 👈 مهم: يسمح للعمود الأيمن بأخذ المساحة المتبقية
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              'مرحباً بك',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey.shade300,
-                letterSpacing: 1,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              patientName,
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                letterSpacing: 1,
-              ),
-              textAlign: TextAlign.end,
-              maxLines: 2,                    // 👈 يسمح بسطرين
-              overflow: TextOverflow.ellipsis, // 👈 لو أكبر يتقطع بـ ...
-              softWrap: true,                 // 👈 يسمح بالتفاف النص
-            ),
-          ],
-        ),
-      ),
-    ],
-  ),
-),
+          
           const SizedBox(height: 16),
-
           // ========== رحلة التعافي (المراحل العلاجية) ==========
           if (reversedHistory.isNotEmpty) ...[
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [
-                    Appcolors.cardBackground,
-                    Appcolors.cardBackground,
-                  ],
+                  colors: [Appcolors.cardBackground, Appcolors.cardBackground],
                 ),
                 borderRadius: BorderRadius.circular(32),
                 boxShadow: [
@@ -282,7 +291,10 @@ class ProfileHeader extends StatelessWidget {
                       ),
                       const Spacer(),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: Appcolors.successColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(20),
@@ -290,7 +302,11 @@ class ProfileHeader extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.rocket_rounded, size: 16, color: Appcolors.successColor),
+                            Icon(
+                              Icons.rocket_rounded,
+                              size: 16,
+                              color: Appcolors.successColor,
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               'قيد التقدم',
@@ -306,7 +322,7 @@ class ProfileHeader extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  
+
                   // خط زمني متدرج
                   ...reversedHistory.asMap().entries.map((entry) {
                     final index = entry.key;
@@ -317,8 +333,9 @@ class ProfileHeader extends StatelessWidget {
                     final role = changedBy?['role'] ?? '';
                     final changedAt = history['changedAt'] ?? '';
                     final isLast = index == reversedHistory.length - 1;
-                    final isLastStage = stageId == 'supportive' || stageId == 'monitoring';
-                    
+                    final isLastStage =
+                        stageId == 'supportive' || stageId == 'monitoring';
+
                     return Column(
                       children: [
                         Row(
@@ -326,7 +343,7 @@ class ProfileHeader extends StatelessWidget {
                           children: [
                             // العمود الأيمن (الخط الزمني)
                             SizedBox(
-                              width: 40,
+                              width: 30,
                               child: Column(
                                 children: [
                                   Container(
@@ -336,13 +353,17 @@ class ProfileHeader extends StatelessWidget {
                                       gradient: LinearGradient(
                                         colors: [
                                           _getStageColor(stageId),
-                                          _getStageColor(stageId).withOpacity(0.7),
+                                          _getStageColor(
+                                            stageId,
+                                          ).withOpacity(0.7),
                                         ],
                                       ),
                                       shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: _getStageColor(stageId).withOpacity(0.3),
+                                          color: _getStageColor(
+                                            stageId,
+                                          ).withOpacity(0.3),
                                           blurRadius: 8,
                                           offset: const Offset(0, 2),
                                         ),
@@ -357,7 +378,9 @@ class ProfileHeader extends StatelessWidget {
                                   ),
                                   if (!isLast)
                                     Container(
-                                      margin: const EdgeInsets.symmetric(vertical: 4),
+                                      margin: const EdgeInsets.symmetric(
+                                        vertical: 4,
+                                      ),
                                       width: 2,
                                       height: 60,
                                       decoration: BoxDecoration(
@@ -366,7 +389,11 @@ class ProfileHeader extends StatelessWidget {
                                           end: Alignment.bottomCenter,
                                           colors: [
                                             _getStageColor(stageId),
-                                            _getStageColor(reversedHistory[index + 1]['stage'] ?? ''),
+                                            _getStageColor(
+                                              reversedHistory[index +
+                                                      1]['stage'] ??
+                                                  '',
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -374,18 +401,24 @@ class ProfileHeader extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 16),
-                            
+                            const SizedBox(width: 12),
+
                             // العمود الأيسر (المحتوى)
                             Expanded(
                               child: Container(
-                                margin: EdgeInsets.only(bottom: isLast ? 0 : 16),
+                                margin: EdgeInsets.only(
+                                  bottom: isLast ? 0 : 16,
+                                ),
                                 padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
-                                  color: _getStageColor(stageId).withOpacity(0.06),
+                                  color: _getStageColor(
+                                    stageId,
+                                  ).withOpacity(0.06),
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all(
-                                    color: _getStageColor(stageId).withOpacity(0.2),
+                                    color: _getStageColor(
+                                      stageId,
+                                    ).withOpacity(0.2),
                                     width: 1.5,
                                   ),
                                 ),
@@ -404,10 +437,17 @@ class ProfileHeader extends StatelessWidget {
                                         ),
                                         const Spacer(),
                                         Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8,
+                                            vertical: 4,
+                                          ),
                                           decoration: BoxDecoration(
-                                            color: _getStageColor(stageId).withOpacity(0.15),
-                                            borderRadius: BorderRadius.circular(12),
+                                            color: _getStageColor(
+                                              stageId,
+                                            ).withOpacity(0.15),
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
                                           ),
                                           child: Text(
                                             _formatDateTime(changedAt),
@@ -433,7 +473,11 @@ class ProfileHeader extends StatelessWidget {
                                     const SizedBox(height: 8),
                                     Row(
                                       children: [
-                                        Icon(Icons.person_outline, size: 14, color: Colors.grey.shade500),
+                                        Icon(
+                                          Icons.person_outline,
+                                          size: 14,
+                                          color: Colors.grey.shade500,
+                                        ),
                                         const SizedBox(width: 4),
                                         Expanded(
                                           child: Text(
@@ -446,7 +490,7 @@ class ProfileHeader extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    
+
                                     // شريط التقدم
                                     const SizedBox(height: 12),
                                     ClipRRect(
@@ -547,23 +591,15 @@ class ProfileHeader extends StatelessWidget {
                   "${profile['age'] ?? '--'}",
                   "العمر",
                 ),
-                Container(
-                  width: 1.5,
-                  height: 50,
-                  color: Colors.grey.shade200,
-                ),
+                Container(width: 1.5, height: 50, color: Colors.grey.shade200),
                 _buildStatItem(
                   Icons.work_rounded,
-                  profile['occupation']?.isNotEmpty == true 
-                      ? profile['occupation'] 
+                  profile['occupation']?.isNotEmpty == true
+                      ? profile['occupation']
                       : 'غير محدد',
                   "المهنة",
                 ),
-                Container(
-                  width: 1.5,
-                  height: 50,
-                  color: Colors.grey.shade200,
-                ),
+                Container(width: 1.5, height: 50, color: Colors.grey.shade200),
                 _buildStatItem(
                   Icons.calendar_today_rounded,
                   _getFormattedDate(profile['entryDate']),
@@ -574,7 +610,8 @@ class ProfileHeader extends StatelessWidget {
           ),
 
           // المرفقات
-          if (profile['images'] != null && (profile['images'] as List).isNotEmpty) ...[
+          if (profile['images'] != null &&
+              (profile['images'] as List).isNotEmpty) ...[
             const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(20),
@@ -594,7 +631,11 @@ class ProfileHeader extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.image_rounded, size: 28, color: Appcolors.accentColorNew),
+                      Icon(
+                        Icons.image_rounded,
+                        size: 28,
+                        color: Appcolors.accentColorNew,
+                      ),
                       const SizedBox(width: 12),
                       Text(
                         'المرفقات',
