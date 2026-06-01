@@ -113,9 +113,12 @@ class _TherapeuticProgramsState extends State<TherapeuticPrograms> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final isSmallScreen = screenWidth < 360;
+
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.all(isSmallScreen ? 14.w : 20.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.r),
         gradient: LinearGradient(colors: [Colors.white, Color(0xffF6F8FC)]),
@@ -134,7 +137,7 @@ class _TherapeuticProgramsState extends State<TherapeuticPrograms> {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(isSmallScreen ? 10 : 12),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
@@ -152,23 +155,25 @@ class _TherapeuticProgramsState extends State<TherapeuticPrograms> {
                 ),
                 child: Icon(Icons.medical_services, color: Appcolors.bluecolor),
               ),
-              Spacer(),
-              Column(
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     "البرامج العلاجية",
                     style: TextStyle(
-                      fontSize: 18.sp,
+                      fontSize: isSmallScreen ? 16.sp : 18.sp,
                       fontWeight: FontWeight.bold,
                       color: Appcolors.bluecolor,
                     ),
                   ),
                   Text(
                     "برامج مصممة خصيصاً لكل حالة",
-                    style: TextStyle(fontSize: 13.sp, color: const Color.fromARGB(255, 100, 97, 97)),
+                    style: TextStyle(fontSize: isSmallScreen ? 12.sp : 13.sp, color: const Color.fromARGB(255, 100, 97, 97)),
                   ),
                 ],
+                ),
               ),
             ],
           ),
@@ -187,7 +192,7 @@ class _TherapeuticProgramsState extends State<TherapeuticPrograms> {
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 margin: EdgeInsets.only(bottom: 18.h),
-                padding: EdgeInsets.all(16.w),
+                padding: EdgeInsets.all(isSmallScreen ? 12.w : 16.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25.r),
                   gradient: LinearGradient(
@@ -222,15 +227,19 @@ class _TherapeuticProgramsState extends State<TherapeuticPrograms> {
                                 : Appcolors.bluecolor,
                           ),
                         ),
-                        Spacer(),
-                        Column(
+                        SizedBox(width: 8.w),
+                        Expanded(
+                          child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
                               programs[index]['title'],
+                              textAlign: TextAlign.right,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 14.sp,
+                                fontSize: isSmallScreen ? 13.sp : 14.sp,
                                 color: selected
                                     ? Colors.white
                                     : Appcolors.bluecolor,
@@ -239,15 +248,19 @@ class _TherapeuticProgramsState extends State<TherapeuticPrograms> {
                             SizedBox(height: 4),
                             Text(
                               programs[index]['sub'],
+                              textAlign: TextAlign.right,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: selected ? Colors.white70 : Colors.grey,
                               ),
                             ),
-                          ],
+                            ],
+                          ),
                         ),
-                        SizedBox(width: 15),
+                        SizedBox(width: isSmallScreen ? 10.w : 15.w),
                         Container(
-                          padding: EdgeInsets.all(14),
+                          padding: EdgeInsets.all(isSmallScreen ? 11 : 14),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: selected
