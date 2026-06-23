@@ -6,6 +6,7 @@ import 'package:forsan_eltafe/features/Profile/screen/ShowprofileScreen.dart';
 import 'package:forsan_eltafe/features/Profile/screen/guest_profile_screen.dart';
 import 'package:forsan_eltafe/features/Profile/widget/login_button.dart';
 import 'package:forsan_eltafe/features/Profile/widget/security.dart';
+import 'package:forsan_eltafe/features/add%20acount/screen/request_status_screen.dart';
 import 'package:forsan_eltafe/features/auth/cubit/login_cubit.dart';
 import 'package:forsan_eltafe/features/auth/cubit/login_state.dart';
 
@@ -191,7 +192,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               borderRadius: BorderRadius.circular(20.r),
                             ),
                             child: Center(
-                              
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
@@ -209,7 +209,46 @@ class _ProfilePageState extends State<ProfilePage> {
                         SizedBox(height: 20),
 
                         const Security(),
-                        SizedBox(height: 35.w,)
+                        SizedBox(height: 10.h),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              final result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RequestStatusScreen(
+                                    onSuccess: () {
+                                      // يمكنك تحديث SharedPreferences هنا إذا أردت
+                                      // لكن البيانات بالفعل محفوظة من createRequest
+                                    },
+                                  ),
+                                ),
+                              );
+
+                              if (result == true) {
+                                _showSuccessSnackBar('✅ تم إرسال طلبك بنجاح!');
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Appcolors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                            ),
+                            child: Text(
+                              "إنشاء حساب جديد",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 150.h),
                       ],
                     ),
                   ),
@@ -218,6 +257,44 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _showSuccessSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(6.w),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.check_rounded,
+                color: Colors.white,
+                size: 20.sp,
+              ),
+            ),
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Text(
+                message,
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: const Color(0xFF2E7D32),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        margin: EdgeInsets.all(16.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       ),
     );
   }
