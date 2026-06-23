@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Conectustomontage extends StatelessWidget {
   const Conectustomontage({super.key});
 
-  final String phone = "01155665660";
+  final String phone = "201155665660";
   final String mapUrl = "https://maps.app.goo.gl/qcsqbroZMTDc86qP7?g_st=iw";
 
   @override
@@ -306,8 +306,8 @@ class Conectustomontage extends StatelessWidget {
   }
 
   void _whatsapp(String number) async {
-    final url = Uri.parse("https://wa.me/$number");
-    await launchUrl(url, mode: LaunchMode.externalApplication);
+    final Uri uri = Uri.parse("https://wa.me/$number");
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   void _openUrl(String url) async {
