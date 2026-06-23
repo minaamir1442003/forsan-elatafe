@@ -139,7 +139,7 @@ class Conectus extends StatelessWidget {
 
             /// WEBSITE CARD
             GestureDetector(
-              onTap: () => _launchWebsite("https://recovery-knights.vercel.app/"),
+              onTap: () => _launchWebsite("https://www.recoveryknights.com/"),
               child: Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(

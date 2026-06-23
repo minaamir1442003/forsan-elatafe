@@ -18,7 +18,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     {
       "image": "assets/image/6cc79e41-e205-4f31-8704-859d54e1592d.jpg",
       "title": "أهلاً بك في\nفُرسان التعافي",
-      "desc": "مؤسسة متخصص في الطب النفسي وعلاج الإدمان\nوإعادة التأهيل السلوكي في بيئة آمنة.",
+      "desc": "مؤسسة متخصصه في الطب النفسي وعلاج الإدمان\nوإعادة التأهيل السلوكي في بيئة آمنة.",
     },
     {
       "image": "assets/wehda/wehda14.jpeg",
